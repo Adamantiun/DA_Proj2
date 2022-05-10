@@ -1,0 +1,3 @@
+D:/ADAM/Desktop/DA/DA_Proj2/cmake-build-debug/CMakeFiles/DA_Proj2.dir
+D:/ADAM/Desktop/DA/DA_Proj2/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/ADAM/Desktop/DA/DA_Proj2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
