@@ -85,6 +85,24 @@ build CMakeFiles/DA_Proj2.dir/codigo/Truck.cpp.obj: CXX_COMPILER__DA_Proj2_Debug
   OBJECT_DIR = CMakeFiles\DA_Proj2.dir
   OBJECT_FILE_DIR = CMakeFiles\DA_Proj2.dir\codigo
 
+build CMakeFiles/DA_Proj2.dir/codigo/StopEdge.cpp.obj: CXX_COMPILER__DA_Proj2_Debug D$:/ADAM/Desktop/DA/DA_Proj2/codigo/StopEdge.cpp || cmake_object_order_depends_target_DA_Proj2
+  DEP_FILE = CMakeFiles\DA_Proj2.dir\codigo\StopEdge.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\DA_Proj2.dir
+  OBJECT_FILE_DIR = CMakeFiles\DA_Proj2.dir\codigo
+
+build CMakeFiles/DA_Proj2.dir/codigo/Line.cpp.obj: CXX_COMPILER__DA_Proj2_Debug D$:/ADAM/Desktop/DA/DA_Proj2/codigo/Line.cpp || cmake_object_order_depends_target_DA_Proj2
+  DEP_FILE = CMakeFiles\DA_Proj2.dir\codigo\Line.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\DA_Proj2.dir
+  OBJECT_FILE_DIR = CMakeFiles\DA_Proj2.dir\codigo
+
+build CMakeFiles/DA_Proj2.dir/codigo/Graph.cpp.obj: CXX_COMPILER__DA_Proj2_Debug D$:/ADAM/Desktop/DA/DA_Proj2/codigo/Graph.cpp || cmake_object_order_depends_target_DA_Proj2
+  DEP_FILE = CMakeFiles\DA_Proj2.dir\codigo\Graph.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\DA_Proj2.dir
+  OBJECT_FILE_DIR = CMakeFiles\DA_Proj2.dir\codigo
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target DA_Proj2
@@ -93,7 +111,7 @@ build CMakeFiles/DA_Proj2.dir/codigo/Truck.cpp.obj: CXX_COMPILER__DA_Proj2_Debug
 #############################################
 # Link the executable DA_Proj2.exe
 
-build DA_Proj2.exe: CXX_EXECUTABLE_LINKER__DA_Proj2_Debug CMakeFiles/DA_Proj2.dir/codigo/main.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Interface/System.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Controller.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Interface/Menu.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Order.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Truck.cpp.obj
+build DA_Proj2.exe: CXX_EXECUTABLE_LINKER__DA_Proj2_Debug CMakeFiles/DA_Proj2.dir/codigo/main.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Interface/System.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Controller.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Interface/Menu.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Order.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Truck.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/StopEdge.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Line.cpp.obj CMakeFiles/DA_Proj2.dir/codigo/Graph.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DA_Proj2.dir
