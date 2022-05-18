@@ -56,7 +56,7 @@ public:
     void addStop(Stop& stop);
 
     /** @brief  Add an Edge.*/
-    void addEdge(int src, int dest, double weight, string code);
+    void addEdge(int origin, int dest, int capacity, int duration);
 
     //Algorithms
 

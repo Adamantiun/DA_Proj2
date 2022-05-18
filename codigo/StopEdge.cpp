@@ -13,6 +13,17 @@ Stop::Stop() {
     this->longitude = 0;
     this->predLine = "";
 }
+
+Stop::Stop(int index) {
+    this->index=index;
+    this->code = "";
+    this->name = "";
+    this->zone = "";
+    this->latitude = 0;
+    this->longitude = 0;
+    this->predLine = "";
+
+}
 Stop::Stop(const string &code, const string &name, const string &zone, float latitude, float longitude) {
     this->code = code;
     this->name = name;
@@ -99,8 +110,8 @@ void Stop::addEdge(Edge& edge) {
     adj.push_back(edge);
 }
 
-void Stop::addEdge(int dest, double weight, string code){
-    adj.push_back(Edge(dest, weight, code));
+void Stop::addEdge(int origin, int dest, int capacity, int duration){
+    adj.push_back(Edge(origin, dest, capacity, duration));
 }
 
 void Stop::setDistance(double distance) {
@@ -152,33 +163,48 @@ bool Stop::isInAdj(Stop &stop) {
 
 //----------------------------------------------------------------------------------------------
 
-
-Edge::Edge(int dest, double weight, string lineCode) {
-    this->weight=weight;
-    this->lineCode=lineCode;
+Edge::Edge() {
+    this->origin=0;
+    this->dest=0;
+    this->capacity=0;
+    this->duration=0;
+}
+Edge::Edge(int origin, int dest, int capacity, int duration) {
+    this->origin=origin;
     this->dest=dest;
+    this->capacity=capacity;
+    this->duration=duration;
 }
 
 int Edge::getDest() {
     return dest;
 }
 
-string Edge::getLineCode() {
-    return lineCode;
+int Edge::getDuration() {
+    return duration;
 }
 
-double Edge::getWeight() const {
-    return weight;
+int Edge::getOrigin() {
+    return origin;
+}
+
+int Edge::getCapacity() {
+    return capacity;
+}
+
+void Edge::setCapacity(int capacity) {
+    this->capacity=capacity;
+}
+
+void Edge::setDuration(int durantion) {
+    this->duration=durantion;
+}
+
+void Edge::setOrigin(int origin) {
+    this->origin=origin;
 }
 
 void Edge::setDest(int  dest) {
     this->dest = dest;
 }
 
-void Edge::setLineCode(string lineCode) {
-    this->lineCode=lineCode;
-}
-
-void Edge::setWeight(double weight) {
-    this->weight=weight;
-}

@@ -34,6 +34,9 @@ public:
      */
     Stop();
 
+    Stop(int index);
+
+
     /**
     * @brief Received the necessary attributes to create a Stop object.
     * @param code
@@ -125,7 +128,7 @@ public:
     void addEdge(Edge& edge);
 
     /** @brief  Add an edge.*/
-    void addEdge(int dest, double weight, string code);
+    void addEdge(int origin, int dest, int capacity, int duration);
 
     //Seachs
     /** @brief  Find for a Stop in the list adj .*/
@@ -150,9 +153,10 @@ public:
 using namespace std;
 class Edge{
 private:
+    int origin;
     int dest;
-    double weight;
-    string lineCode;
+    int capacity;
+    int duration;
 public:
     // Constructors
     /**
@@ -161,34 +165,43 @@ public:
     * @param weight
     * @param lineCode
     */
-    Edge(int dest, double weight, string lineCode);
+    Edge(int origin, int dest, int capacity, int duration);
 
+    Edge();
     //Gets
+    /** @brief  Get dest attribute.*/
+    int getOrigin();
+
     /** @brief  Get dest attribute.*/
     int getDest();
 
-    /** @brief  Get weight attribute.*/
-    double getWeight() const;
+    /** @brief  Get dest attribute.*/
+    int getCapacity();
 
-    /** @brief  Get lineCode attribute.*/
-    string getLineCode();
+    /** @brief  Get dest attribute.*/
+    int getDuration();
 
     //Sets
     /** @brief  Set dest attribute.*/
+    void setOrigin(int origin);
+
+    /** @brief  Set dest attribute.*/
     void setDest(int dest);
 
-    /** @brief  Set weight attribute.*/
-    void setWeight(double weight);
+    /** @brief  Set dest attribute.*/
+    void setCapacity(int capacity);
 
-    /** @brief  Set lineCode attribute.*/
-    void setLineCode(string lineCode);
+    /** @brief  Set dest attribute.*/
+    void setDuration(int durantion);
+
+
 
     //Operators
     /**
     * @brief Operator overload.
     */
     friend bool operator==(const Edge& e1, const Edge& e2){
-        return(e1.weight==e2.weight && e1.lineCode==e2.lineCode && e1.dest==e2.dest);
+        return(e1.origin==e2.origin && e1.dest==e2.dest && e1.capacity==e2.capacity && e1.duration==e2.duration);
     }
 
 };

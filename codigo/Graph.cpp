@@ -16,7 +16,7 @@ Graph::Graph(int num, bool dir) : n(num), hasDir(dir){}
 void Graph::addStop(Stop &stop) {
     this->stops.push_back(stop);
 }
-
+/*
 vector<pair<int, std::string>> Graph::dijkstra_distance(Stop& a, Stop& b) {
     if (a==b) return {};
     resetNodes();
@@ -40,6 +40,7 @@ vector<pair<int, std::string>> Graph::dijkstra_distance(Stop& a, Stop& b) {
     }
     return getPath(a, b);
 }
+ */
 
 vector<pair<int, string>> Graph::dijkstra_zones(int a, int b) {
     if (a==b) return {};
@@ -124,10 +125,10 @@ vector<Stop>& Graph::getStops(){
     return stops;
 }
 
-void Graph::addEdge(int src, int dest, double weight = 1.0, string code=0){
-    stops.at(src).addEdge(dest, weight, code);
+void Graph::addEdge(int origin, int dest, int capacity, int duration){
+    stops.at(origin).addEdge(origin, dest, capacity, duration);
 }
-
+/*
 vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest) {
     resetNodes();
     queue<Stop> q; // queue of unvisited nodes
@@ -148,5 +149,5 @@ vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest) {
     }
     return getPath(origin, dest);
 }
-
+*/
 
