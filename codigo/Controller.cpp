@@ -19,7 +19,10 @@ Controller::Controller() {
 
 bool Controller::readInput(int inNo) {
     ifstream inputFile;
-    inputFile.open("../input/in" + to_string(inNo) + ".txt" );
+    if(inNo>=10)
+        inputFile.open("../input/in" + to_string(inNo) + "_b.txt" );
+    else
+        inputFile.open("../input/in0" + to_string(inNo) + "_b.txt" );
     if (inputFile.fail()) {
         return false;
     }

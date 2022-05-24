@@ -1,9 +1,14 @@
 # ninja log v5
-439	3125	6738952208700111	CMakeFiles/DA_Proj2.dir/main.cpp.obj	505a5bfaf9c69041
 6767	7694	6738956289993340	DA_Proj2.exe	7dd07eddaf18385c
 88	6286	6738956259333277	CMakeFiles/DA_Proj2.dir/codigo/Interface/Menu.cpp.obj	5f363c21eef92d04
 97	6767	6738956280698168	CMakeFiles/DA_Proj2.dir/codigo/Controller.cpp.obj	2d712b9d506850fe
-84	3444	6738956240468796	CMakeFiles/DA_Proj2.dir/codigo/Order.cpp.obj	5d37bd6020773a3f
 92	4172	6738956253115512	CMakeFiles/DA_Proj2.dir/codigo/main.cpp.obj	fc34c71e3eed2f14
-1	6282	6738956253544122	CMakeFiles/DA_Proj2.dir/codigo/Truck.cpp.obj	bba807b73930ba04
 102	6542	6738956278588201	CMakeFiles/DA_Proj2.dir/codigo/Interface/System.cpp.obj	4846556bf33dfac1
+40	2362	6750254104959484	CMakeFiles/DA_Proj2.dir/codigo/main.cpp.obj	fc34c71e3eed2f14
+78	2387	6750254104989489	CMakeFiles/DA_Proj2.dir/codigo/Line.cpp.obj	61aac66bc8b8c7cd
+45	2410	6750254105559490	CMakeFiles/DA_Proj2.dir/codigo/StopEdge.cpp.obj	14f90dc3d6a0caf8
+98	2628	6750254107943807	CMakeFiles/DA_Proj2.dir/codigo/Interface/Menu.cpp.obj	5f363c21eef92d04
+73	2767	6750254109475257	CMakeFiles/DA_Proj2.dir/codigo/Controller.cpp.obj	2d712b9d506850fe
+6	3701	6750254118287465	CMakeFiles/DA_Proj2.dir/codigo/Interface/System.cpp.obj	4846556bf33dfac1
+2363	4527	6750254127075972	CMakeFiles/DA_Proj2.dir/codigo/Graph.cpp.obj	b6b1f8df1f465383
+4527	5500	6750254136747114	DA_Proj2.exe	acee0dc77a1d307b
