@@ -33,6 +33,7 @@ public:
     Graph(int nodes, bool dir = false);
 
     // Gets
+
     /** @brief  Get Stop wich is the destination of an edge.*/
     Stop& getDest(Edge edge);
 
@@ -50,6 +51,8 @@ public:
 
     /** @brief  Get index of a Stop with some code.*/
     int getIndexStop(string code);
+
+    bool has(int x);
 
     //Adds
     /** @brief  Add a Stop.*/

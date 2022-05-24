@@ -25,7 +25,7 @@ public:
     ~Controller();
 
     // Gets
-
+    Graph getGraph();
 
     /**
     * @brief Gets the stopDB of the Controller object.

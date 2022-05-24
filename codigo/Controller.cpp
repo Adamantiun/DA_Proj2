@@ -67,6 +67,10 @@ vector<Stop>& Controller::getStops() {
     return stopDB;
 }
 
+Graph Controller::getGraph() {
+    return graph;
+}
+
 
 
 

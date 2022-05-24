@@ -17,6 +17,14 @@ public:
     System();
     Controller& getController() {return controller;}
     static void clearScreen();
+
+    void changeMap();
+
+    void nDivCase1(int ori, int dest, int groupSize);
+
+    void nDivCase2(int ori, int dest);
+
+    void nDivCase3(int ori, int dest);
 };
 #endif //PROJ1_SYSTEM_H
 
