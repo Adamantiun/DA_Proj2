@@ -56,7 +56,17 @@ System::System() {
             continue;
         }
         if(opt2 == 0){
-
+            opt3 = baseMenu.printOptionsMenu({"I have a set number of people to take",
+                                              "How many people can I take? On which path?", "Go back"});
+            if(opt3 == 2)
+                continue;
+            if(opt3 == 0){
+                int np = stoi(baseMenu.intInputMenu("How manny people are you taking?"));
+                divCase1(ori, dest, np);
+                continue;
+            }
+            divCase2(ori, dest);
+            continue;
         }
         if (opt1 == 69) break;
     }
@@ -79,6 +89,14 @@ void System::nDivCase2(int ori, int dest) {
 }
 
 void System::nDivCase3(int ori, int dest) {
+
+}
+
+void System::divCase1(int ori, int dest, int groupSize) {
+
+}
+
+void System::divCase2(int ori, int dest) {
 
 }
 
