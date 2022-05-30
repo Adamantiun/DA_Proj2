@@ -18,6 +18,8 @@ private:
     vector<Line> linesDB;
     Graph graph;
 public:
+
+    Graph getGraph();
     // Constructors
     /** @brief  Default constructor.*/
     Controller();

@@ -29,7 +29,7 @@ bool Controller::readInput(int inNo) {
     string nStops;
     string nEdges;
     getline(inputFile,nStops, ' ');
-    this->graph= Graph(stoi(nStops));
+    this->graph= Graph(stoi(nStops) );
     for(int i=1; i<= stoi(nStops);i++){
         Stop aux = Stop(i);
         graph.addStop(aux);
@@ -65,6 +65,10 @@ vector<Line> Controller::getLines() {
 
 vector<Stop>& Controller::getStops() {
     return stopDB;
+}
+
+Graph Controller::getGraph() {
+    return graph;
 }
 
 

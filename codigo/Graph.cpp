@@ -5,6 +5,7 @@
 
 #include "Graph.h"
 #include "minHeap.h"
+#include <algorithm>
 
 Graph::Graph() {
     this->n=0;
@@ -16,70 +17,82 @@ Graph::Graph(int num, bool dir) : n(num), hasDir(dir){}
 void Graph::addStop(Stop &stop) {
     this->stops.push_back(stop);
 }
-/*
-vector<pair<int, std::string>> Graph::dijkstra_distance(Stop& a, Stop& b) {
-    if (a==b) return {};
+
+int Graph::max_capacity(Stop& a, Stop& b){
+    for(int i = 0; i < stops.size(); i++) {
+        stops[i].setCapacity(0);
+        stops[i].setVisited(false);
+        stops[i].setPred(i);
+    }
+    getStop(a.getIndex()).setCapacity(1000);
+    struct PriorityQueue s;
+    for(int i = 0; i < stops.size(); i++) {
+        s.push(stops[i].getIndex(),stops[i].getCapacity());
+    }
+    while (s.size()>0){
+        int u = s.top();
+        s.pop();
+        getStop(u).setVisited(true);
+        for (Edge& edge : getStop(u).getAdj()){
+            if (min(getStop(u).getCapacity(),edge.getCapacity()) > getStop(edge.getDest()).getCapacity() ){
+                getStop(edge.getDest()).setCapacity(min(getStop(u).getCapacity(),edge.getCapacity()));
+                getStop(edge.getDest()).setPred(u);
+                s.clean();
+                for(int i = 0; i < stops.size() ; i++) {
+                    if(!stops[i].getVisited()) {
+                        s.push(stops[i].getIndex(), stops[i].getCapacity());
+                    }
+                }
+
+            }
+        }
+    }
+    return getStop(b.getIndex()).getCapacity();
+
+
+
+
+
+}
+
+vector<int> Graph::dijkstra_distance(Stop& a, Stop& b, int groupSize) {
+    if (a.getIndex()==b.getIndex()) return {};
     resetNodes();
-    a.setDistance(0);
+    getStop(a.getIndex()).setDistance(0);
     MinHeap<int,double> q(n,NULL);
     for (int i = 0; i<=n;i++){
-        q.insert(i,stops[i].getDistance());
+        q.insert(stops[i].getIndex(),stops[i].getDistance());
     }
     while (q.getSize()!=0){
         int u = q.removeMin();
-        stops[u].setVisited(true);
-        for (Edge& edge : stops[u].getAdj()){
-            double tempDist = stops[u].getDistance() + edge.getWeight();
-            if ((tempDist < getDest(edge).getDistance()) && q.hasKey(edge.getDest())){
-                stops[getDest(edge).getIndex()].setDistance(tempDist);
-                stops[getDest(edge).getIndex()].setPred(u);
-                stops[getDest(edge).getIndex()].setPredLine(edge.getLineCode());
-                q.decreaseKey(getDest(edge).getIndex(),tempDist);
+        getStop(u).setVisited(true);
+        for (Edge& edge : getStop(u).getAdj()){
+            if(edge.getCapacity()<groupSize) continue;
+            double tempDist = getStop(u).getDistance() + 1;
+            if ((tempDist < getStop(edge.getDest()).getDistance()) && q.hasKey(edge.getDest())){
+                getStop(getStop(edge.getDest()).getIndex()).setDistance(tempDist);
+                getStop(getStop(edge.getDest()).getIndex()).setPred(u);
+                getStop(getStop(edge.getDest()).getIndex()).setPredMax(edge.getCapacity());
+                q.decreaseKey(getStop(edge.getDest()).getIndex(),tempDist);
             }
         }
     }
     return getPath(a, b);
 }
- */
 
-vector<pair<int, string>> Graph::dijkstra_zones(int a, int b) {
-    if (a==b) return {};
-    resetNodes();
-    stops[a].setDistance(0);
-    MinHeap<int,double> q(n,0);
-    for (int i = 0; i<n;i++){
-        q.insert(i,stops[i].getDistance());
-    }
-    while (q.getSize()!=0){
-        int u = q.removeMin();
-        stops[u].setVisited(true);
-        for (Edge& edge : stops[u].getAdj()){
-            int v = edge.getDest();
-            int tempDist = stops[u].getDistance();
-            if(stops[u].getZone() != stops[v].getZone())
-                tempDist++;
-            if ((tempDist < getDest(edge).getDistance()) && q.hasKey(edge.getDest())){
-                stops[getDest(edge).getIndex()].setDistance(tempDist);
-                stops[getDest(edge).getIndex()].setPred(u);
-                q.decreaseKey(getDest(edge).getIndex(),tempDist);
-            }
-        }
-    }
-    return getPath(stops[a], stops[b]);
-}
 
-vector<pair<int, string>> Graph::getPath(Stop& a, Stop& b){
-    vector<pair<int, string>> res;
-    pair<int, string> p = {b.getIndex(), b.getPredLine()};
+vector<int> Graph::getPath(Stop& a, Stop& b){
+    vector<int> res;
+    int p = getStop(b.getIndex()).getIndex();
     res.push_back(p);
-    int i = b.getPred();
-    p = {i, getStop(i).getPredLine()};
+    int i = getStop(b.getIndex()).getPred();
+    p = i;
     while (i!=a.getIndex()){
         res.insert(res.begin(),p);
         i = getStop(i).getPred();
-        p = {i, getStop(i).getPredLine()};
+        p = i;
     }
-    p = {a.getIndex(), a.getPredLine()};
+    p = a.getIndex();
     res.insert(res.begin(), p);
     if (b.getDistance()==INT_MAX) return {};
     return res;
@@ -89,7 +102,7 @@ void Graph::resetNodes(){
     for(int i = 0; i < n; i++) {
         stops[i].setDistance(1000);
         stops[i].setVisited(false);
-        stops[i].setPred(i);
+        stops[i].setPred(stops[i].getIndex());
     }
 }
 
@@ -129,7 +142,7 @@ void Graph::addEdge(int origin, int dest, int capacity, int duration){
     stops.at(origin).addEdge(origin, dest, capacity, duration);
 }
 /*
-vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest) {
+vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest, int max) {
     resetNodes();
     queue<Stop> q; // queue of unvisited nodes
     q.push(origin);
@@ -139,7 +152,7 @@ vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest) {
         q.pop();
         for (auto e : u.getAdj()) {
             int w = e.getDest();
-            if (!stops[w].getVisited()) {
+            if (!stops[w].getVisited() ) {
                 q.push(stops[w]);
                 stops[w].setVisited(true);
                 stops[w].setPred(u.getIndex());
@@ -149,5 +162,5 @@ vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest) {
     }
     return getPath(origin, dest);
 }
-*/
 
+*/

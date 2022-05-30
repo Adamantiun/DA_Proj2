@@ -10,6 +10,8 @@
 #include <queue>
 #include <iostream>
 #include "StopEdge.h"
+#include "maxHeap.h"
+
 
 using namespace std;
 
@@ -37,7 +39,7 @@ public:
     Stop& getDest(Edge edge);
 
     /** @brief  Get path between 2 Stops.*/
-    vector<pair<int, std::string>> getPath(Stop& a, Stop& b);
+    vector<int> getPath(Stop& a, Stop& b);
 
     /** @brief  Get Stop with some index.*/
     Stop& getStop(int index);
@@ -61,7 +63,7 @@ public:
     //Algorithms
 
     /** @brief  Dijkstra algorithm that returns the path the least distance.*/
-    vector<pair<int, std::string>> dijkstra_distance (Stop& a, Stop& b);
+    vector<int> dijkstra_distance (Stop& a, Stop& b, int groupSize);
 
     /** @brief  Dijkstra algorithm that returns the path the least number of zones.*/
     vector<pair<int, string>> dijkstra_zones(int a, int b);
@@ -72,6 +74,9 @@ public:
     //Resents
     /** @brief  Reset every Stop.*/
     void resetNodes();
+
+    int max_capacity(Stop& a, Stop& b);
+
 
 
 

@@ -15,6 +15,7 @@ class Edge;
 class Stop {
 private:
     int index;
+    int capacity;
     string code;
     string name;
     string zone;
@@ -24,7 +25,7 @@ private:
     double distance;
     bool visited;
     int pred;
-    string predLine;
+    int predMax;
 
 public:
     // Constructors
@@ -68,6 +69,11 @@ public:
     /** @brief  Get zone attribute.*/
     const string &getZone() const;
 
+
+    /** @brief  Get capacity attribute.*/
+    const int &getCapacity() const;
+
+
     /** @brief  Get latitude attribute.*/
     float getLatitude() const;
 
@@ -87,7 +93,7 @@ public:
     list<Edge> getAdj();
 
     /** @brief  Get predLine attribute.*/
-    string getPredLine() const;
+    int getPredMax() const;
 
     /** @brief  Get index attribute.*/
     int getIndex() const;
@@ -95,6 +101,9 @@ public:
     //Sets
     /** @brief  Set index attribute.*/
     void setIndex(int index);
+
+    /** @brief  Set capacity attribute.*/
+    void setCapacity(int capacity);
 
     /** @brief  Set code attribute.*/
     void setCode(const string &code);
@@ -121,7 +130,7 @@ public:
     void setLongitude(float longitude);
 
     /** @brief  Set predLine attribute.*/
-    void setPredLine(string line);
+    void setPredMax(int max);
 
     //Adds
     /** @brief  Add an edge.*/

@@ -17,6 +17,13 @@ void System::clearScreen() {
 System::System() {
 
     controller = Controller();
+    controller.readInput(11);
+
+    vector<int> res =controller.getGraph().dijkstra_distance(controller.getGraph().getStop(1),controller.getGraph().getStop(3),6);
+    cout << res.size()<< endl;
+    for(int i =0;i<res.size(); i++){
+        cout << i <<" - " << res[i] << endl;
+    }
 
     Menu baseMenu = Menu(controller);
     baseMenu.setMainOps({"Staff Optimizing", "Profit Optimizing", "Express Deliveries"});

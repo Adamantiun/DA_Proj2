@@ -119,6 +119,9 @@
 		<Unit filename="C:/Users/35196/OneDrive/Documentos/GitHub/DA_Proj2/codigo/main.cpp">
 			<Option target="DA_Proj2"/>
 		</Unit>
+		<Unit filename="C:/Users/35196/OneDrive/Documentos/GitHub/DA_Proj2/codigo/maxHeap.h">
+			<Option target="DA_Proj2"/>
+		</Unit>
 		<Unit filename="C:/Users/35196/OneDrive/Documentos/GitHub/DA_Proj2/codigo/minHeap.h">
 			<Option target="DA_Proj2"/>
 		</Unit>

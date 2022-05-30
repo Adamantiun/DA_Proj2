@@ -11,7 +11,9 @@ Stop::Stop() {
     this->zone = "";
     this->latitude = 0;
     this->longitude = 0;
-    this->predLine = "";
+    this->predMax = 0;
+    this->capacity = 0;
+
 }
 
 Stop::Stop(int index) {
@@ -21,7 +23,9 @@ Stop::Stop(int index) {
     this->zone = "";
     this->latitude = 0;
     this->longitude = 0;
-    this->predLine = "";
+    this->predMax = 0;
+    this->capacity = 0;
+
 
 }
 Stop::Stop(const string &code, const string &name, const string &zone, float latitude, float longitude) {
@@ -30,7 +34,9 @@ Stop::Stop(const string &code, const string &name, const string &zone, float lat
     this->zone = zone;
     this->latitude = latitude;
     this->longitude =longitude;
-    this->predLine = "";
+    this->predMax = 0;
+    this->capacity = 0;
+
 }
 
 Stop::~Stop(){
@@ -41,6 +47,10 @@ Stop::~Stop(){
 
 const string &Stop::getCode() const {
     return code;
+}
+
+const int &Stop::getCapacity() const {
+    return capacity;
 }
 
 const string &Stop::getName() const {
@@ -81,6 +91,10 @@ void Stop::setLatitude(float latitude) {
 
 void Stop::setLongitude(float longitude) {
     Stop::longitude = longitude;
+}
+
+void Stop::setCapacity(int capacity) {
+    Stop::capacity=capacity;
 }
 
 istream & operator>>(istream &is, Stop &stop) {
@@ -146,12 +160,12 @@ int Stop::getIndex() const {
     return index;
 }
 
-void Stop::setPredLine(string line) {
-    predLine = line;
+void Stop::setPredMax(int max) {
+    predMax = max;
 }
 
-string Stop::getPredLine() const{
-    return predLine;
+int Stop::getPredMax() const{
+    return predMax;
 }
 
 bool Stop::isInAdj(Stop &stop) {
