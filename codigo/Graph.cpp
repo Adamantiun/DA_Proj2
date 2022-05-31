@@ -18,7 +18,12 @@ void Graph::addStop(Stop &stop) {
     this->stops.push_back(stop);
 }
 
-int Graph::max_capacity(Stop& a, Stop& b){
+
+int Graph::pathMaxCapacity(int a, int b){
+    return pathMaxCapacity(getStop(a), getStop(b));
+}
+
+int Graph::pathMaxCapacity(Stop& a, Stop& b){
     for(int i = 0; i < stops.size(); i++) {
         stops[i].setCapacity(0);
         stops[i].setVisited(false);
@@ -48,14 +53,9 @@ int Graph::max_capacity(Stop& a, Stop& b){
         }
     }
     return getStop(b.getIndex()).getCapacity();
-
-
-
-
-
 }
 
-vector<int> Graph::dijkstra_distance(Stop& a, Stop& b, int groupSize) {
+vector<int> Graph::dijkstraCapacity(Stop& a, Stop& b, int groupSize) {
     if (a.getIndex()==b.getIndex()) return {};
     resetNodes();
     getStop(a.getIndex()).setDistance(0);
@@ -147,6 +147,14 @@ bool Graph::has(int x) {
         if(s.getIndex() == x)
             return true;
     return false;
+}
+
+Edge Graph::getEdge(Stop a, Stop b) {
+    for(auto e : getStop(a.getIndex()).getAdj()){
+        if(e.getDest() == b.getIndex())
+            return e;
+    }
+    return Edge(0, 0, 0, 0);
 }
 /*
 vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest, int max) {

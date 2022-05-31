@@ -71,6 +71,19 @@ Graph Controller::getGraph() {
     return graph;
 }
 
+string Controller::getPrintableDikjCapacity(int ori, int dest, int groupSize) {
+    string ret = "Here's your route:\n";
+    vector<int> path = graph.dijkstraCapacity(graph.getStop(ori), graph.getStop(dest), groupSize);
+    int i = 1;
+    while (i < path.size()) {
+        ret += "From " + to_string(path[i - 1]) + " to " + to_string(path[i]) + ", taking " +
+               to_string(graph.getEdge(graph.getStop(path[i-1]), graph.getStop(path[i])).getDuration()) + "min\n";
+        i++;
+    }
+    ret.resize(ret.size()-1);
+    return ret;
+}
+
 
 
 

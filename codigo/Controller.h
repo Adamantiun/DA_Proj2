@@ -51,6 +51,7 @@ public:
 
     //Sceneries
 
+    string getPrintableDikjCapacity(int ori, int dest, int groupSize);
 };
 
 #endif //PROJ1_CONTROLLER_H

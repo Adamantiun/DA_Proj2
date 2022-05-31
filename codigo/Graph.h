@@ -53,6 +53,8 @@ public:
     /** @brief  Get index of a Stop with some code.*/
     int getIndexStop(string code);
 
+    Edge getEdge(Stop a, Stop b);
+
     //Adds
     /** @brief  Add a Stop.*/
     void addStop(Stop& stop);
@@ -63,7 +65,7 @@ public:
     //Algorithms
 
     /** @brief  Dijkstra algorithm that returns the path the least distance.*/
-    vector<int> dijkstra_distance (Stop& a, Stop& b, int groupSize);
+    vector<int> dijkstraCapacity (Stop& a, Stop& b, int groupSize);
 
     /** @brief  Dijkstra algorithm that returns the path the least number of zones.*/
     vector<pair<int, string>> dijkstra_zones(int a, int b);
@@ -75,10 +77,12 @@ public:
     /** @brief  Reset every Stop.*/
     void resetNodes();
 
-    int max_capacity(Stop& a, Stop& b);
+    int pathMaxCapacity(Stop& a, Stop& b);
 
 
     bool has(int x);
+
+    int pathMaxCapacity(int a, int b);
 };
 
 #endif

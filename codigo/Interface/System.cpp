@@ -21,6 +21,7 @@ System::System() {
     Menu baseMenu = Menu(controller);
     baseMenu.setMainOps({"Staff Optimizing", "Profit Optimizing", "Express Deliveries"});
 
+
     while(true) {
         int opt1 = baseMenu.printOptionsMenu({"Get route","Change map"}, "Welcome! What would you like to do?");
         if(opt1 == 1){
@@ -34,6 +35,10 @@ System::System() {
         int dest = stoi(baseMenu.intInputMenu("Where would you like to go?"));
         while(!controller.getGraph().has(dest)){
             dest = stoi(baseMenu.intInputMenu("Where would you like to go?", "This stop does not exist!"));
+        }
+        if(controller.getGraph().pathMaxCapacity(ori, dest) == 0){
+            baseMenu.singleInputScreen("Sorry, but there's no path between those stops");
+            continue;
         }
         int opt2 = baseMenu.printOptionsMenu({"Yes", "No", "Go back"},"Are you willing to split your group?");
         if(opt2 == 2)
@@ -68,7 +73,7 @@ System::System() {
             divCase2(ori, dest);
             continue;
         }
-        if (opt1 == 69) break;
+        if (opt1 == 4) break;
     }
 }
 
@@ -81,11 +86,23 @@ void System::changeMap() {
 }
 
 void System::nDivCase1(int ori, int dest, int groupSize) {
-
+    Menu tempMenu = Menu(controller);
+    if(groupSize > controller.getGraph().pathMaxCapacity(ori, dest)){
+        tempMenu.singleInputScreen("Sorry, but you can't take that many people!");
+        return;
+    }
+    string message = controller.getPrintableDikjCapacity(ori, dest, groupSize);
+    tempMenu.singleInputScreen(message);
 }
 
 void System::nDivCase2(int ori, int dest) {
-
+    Menu tempMenu = Menu(controller);
+    int groupSize = controller.getGraph().pathMaxCapacity(ori, dest);
+    if(tempMenu.printOptionsMenu({"Get path for that group size", "Go back"},
+                              "You can take up to " + to_string(groupSize) + " people") == 1)
+        return;
+    string message = controller.getPrintableDikjCapacity(ori, dest, groupSize);
+    tempMenu.singleInputScreen(message);
 }
 
 void System::nDivCase3(int ori, int dest) {
