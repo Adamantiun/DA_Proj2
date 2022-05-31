@@ -156,6 +156,13 @@ Edge Graph::getEdge(Stop a, Stop b) {
     }
     return Edge(0, 0, 0, 0);
 }
+
+int Graph::getPathTime(vector<int> path) {
+    int ret = 0;
+    for(int i = 1; i<path.size(); i++)
+        ret += getEdge(getStop(path[i-1]), getStop(path[i])).getDuration();
+    return ret;
+}
 /*
 vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest, int max) {
     resetNodes();

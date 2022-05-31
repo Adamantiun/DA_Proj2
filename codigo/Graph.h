@@ -83,6 +83,8 @@ public:
     bool has(int x);
 
     int pathMaxCapacity(int a, int b);
+
+    int getPathTime(vector<int> path);
 };
 
 #endif

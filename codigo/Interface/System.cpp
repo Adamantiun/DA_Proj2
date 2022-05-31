@@ -106,7 +106,15 @@ void System::nDivCase2(int ori, int dest) {
 }
 
 void System::nDivCase3(int ori, int dest) {
+    Menu tempMenu = Menu(controller);
+    float n = 0;
+    vector<string> opts = controller.getEquiEfficientOpts(ori, dest, n);
 
+    int op1 = tempMenu.printOptionsMenu(opts,
+                              "Here are the most efficient paths, with " + ftos(n, 2)  + " bus rides per person:");
+    int groupSize = controller.getSizeAtIndex(op1);
+    string message = controller.getPrintableDikjCapacity(ori, dest, groupSize);
+    tempMenu.singleInputScreen(message);
 }
 
 void System::divCase1(int ori, int dest, int groupSize) {
@@ -115,6 +123,29 @@ void System::divCase1(int ori, int dest, int groupSize) {
 
 void System::divCase2(int ori, int dest) {
 
+}
+
+string System::ftos(float n, int i) {
+    string ret = "";
+    string s = to_string(n);
+    int j = 0;
+    while(j<s.size() && s[j]!='.')
+        ret.push_back(s[j++]);
+    if(i == 0)
+        return ret;
+    ret.push_back(s[j++]);
+    for(int k = 0; k < i; k++)
+        ret.push_back(s[j++]);
+    j--;
+    if(s[j] == '0') {
+        while (s[j] == '0'){
+            s.resize(s.size()-1);
+            j--;
+        }
+    }
+    if(s[j] == '.')
+        s.resize(s.size()-1);
+    return ret;
 }
 
 

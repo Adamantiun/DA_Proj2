@@ -29,6 +29,8 @@ public:
     void divCase1(int ori, int dest, int groupSize);
 
     void divCase2(int ori, int dest);
+
+    string ftos(float n, int i);
 };
 #endif //PROJ1_SYSTEM_H
 

@@ -84,6 +84,41 @@ string Controller::getPrintableDikjCapacity(int ori, int dest, int groupSize) {
     return ret;
 }
 
+vector<string> Controller::getEquiEfficientOpts(int ori, int dest, float& retMaxCaptaPerConnect) {
+    vector<string> ret;
+
+    float maxCaptaPerConnect = 0;
+    int n = 0;
+    latestIndexGroupSize.clear();
+
+    for(int i=1; i<=graph.pathMaxCapacity(ori, dest); i++){
+        vector<int> path = graph.dijkstraCapacity(graph.getStop(ori), graph.getStop(dest), i);
+        if(ceil((100.0*i)/((path.size()-1)))/100.0 > maxCaptaPerConnect){
+            maxCaptaPerConnect = ceil((100.0*i)/((path.size()-1)))/100.0;
+            latestIndexGroupSize.clear();
+            n = 0;
+            ret.clear();
+            latestIndexGroupSize.push_back(i);
+            ret.push_back("Taking " + to_string(i) + " people, you will ride " + to_string(path.size()-1)
+                    +" buses, and take "+ to_string(graph.getPathTime(path)) + "min");
+            n++;
+        }else if(ceil((100.0*i)/((path.size()-1)))/100.0 == maxCaptaPerConnect){
+            latestIndexGroupSize.push_back(i);
+            ret.push_back("Taking " + to_string(i) + " people, you will ride " + to_string(path.size()-1)
+                          +" buses, and take "+ to_string(graph.getPathTime(path)) + "min");
+            n++;
+        }
+    }
+
+    retMaxCaptaPerConnect = maxCaptaPerConnect;
+
+    return ret;
+}
+
+int Controller::getSizeAtIndex(int i) {
+    return latestIndexGroupSize[i];
+}
+
 
 
 

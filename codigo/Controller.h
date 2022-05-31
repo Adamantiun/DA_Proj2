@@ -17,6 +17,7 @@ private:
     vector<Stop> stopDB;
     vector<Line> linesDB;
     Graph graph;
+    vector<int> latestIndexGroupSize;
 public:
 
     Graph getGraph();
@@ -52,6 +53,10 @@ public:
     //Sceneries
 
     string getPrintableDikjCapacity(int ori, int dest, int groupSize);
+
+    vector<string> getEquiEfficientOpts(int ori, int dest, float& retMaxCaptaPerConnect);
+
+    int getSizeAtIndex(int i);
 };
 
 #endif //PROJ1_CONTROLLER_H
