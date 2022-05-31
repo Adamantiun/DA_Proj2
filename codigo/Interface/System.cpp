@@ -17,39 +17,87 @@ void System::clearScreen() {
 System::System() {
 
     controller = Controller();
-    controller.readInput(11);
-
-    vector<int> res =controller.getGraph().dijkstra_distance(controller.getGraph().getStop(1),controller.getGraph().getStop(3),6);
-    cout << res.size()<< endl;
-    for(int i =0;i<res.size(); i++){
-        cout << i <<" - " << res[i] << endl;
-    }
-
+    controller.readInput(1);
     Menu baseMenu = Menu(controller);
     baseMenu.setMainOps({"Staff Optimizing", "Profit Optimizing", "Express Deliveries"});
 
     while(true) {
-        string orderOption = baseMenu.intInputMenu("Hello! Please select an input to process!");
-        vector<string> usedInputs;
-        while(!controller.readInput(stoi(orderOption)))
-            orderOption = baseMenu.intInputMenu("Please select an input to process!", "This input does not exists!");
-        usedInputs.push_back(orderOption);
-        orderOption = baseMenu.anyInputMenu("If you would like, select another input to process!\nOr type 'C' to continue!");
-        while(orderOption!="C" && orderOption!="c"){
-            if(find(usedInputs.begin(), usedInputs.end(), orderOption) != usedInputs.end()){
-                orderOption = baseMenu.anyInputMenu("If you would like, select another input to process!\nOr type 'C' to continue!", "This input has already been requested!");
+        int opt1 = baseMenu.printOptionsMenu({"Get route","Change map"}, "Welcome! What would you like to do?");
+        if(opt1 == 1){
+            changeMap();
+            continue;
+        }
+        int ori = stoi(baseMenu.intInputMenu("Where are you coming from?"));
+        while(!controller.getGraph().has(ori)){
+            ori = stoi(baseMenu.intInputMenu("Where are you coming from?", "This stop does not exist!"));
+        }
+        int dest = stoi(baseMenu.intInputMenu("Where would you like to go?"));
+        while(!controller.getGraph().has(dest)){
+            dest = stoi(baseMenu.intInputMenu("Where would you like to go?", "This stop does not exist!"));
+        }
+        int opt2 = baseMenu.printOptionsMenu({"Yes", "No", "Go back"},"Are you willing to split your group?");
+        if(opt2 == 2)
+            continue;
+        int opt3;
+        if(opt2 == 1){
+            opt3 = baseMenu.printOptionsMenu({"I have a set number of people to take",
+                                       "How many people can I take?", "What is the most efficient path?", "Go back"});
+            if(opt3 == 3)
+                continue;
+            if(opt3 == 0){
+                int np = stoi(baseMenu.intInputMenu("How manny people are you taking?"));
+                nDivCase1(ori, dest, np);
                 continue;
             }
-            if(!baseMenu.is_number(orderOption) || !controller.readInput(stoi(orderOption)))
-                orderOption = baseMenu.anyInputMenu("If you would like, select another input to process!\nOr type 'C' to continue!", "Invalid Input!");
-            else{
-                usedInputs.push_back(orderOption);
-                orderOption = baseMenu.anyInputMenu("If you would like, select another input to process!\nOr type 'C' to continue!");
-            }
+            if(opt3 == 1)
+                nDivCase2(ori, dest);
+            else
+                nDivCase3(ori, dest);
+            continue;
         }
-
-        if (orderOption == "x") break;
+        if(opt2 == 0){
+            opt3 = baseMenu.printOptionsMenu({"I have a set number of people to take",
+                                              "How many people can I take? On which path?", "Go back"});
+            if(opt3 == 2)
+                continue;
+            if(opt3 == 0){
+                int np = stoi(baseMenu.intInputMenu("How manny people are you taking?"));
+                divCase1(ori, dest, np);
+                continue;
+            }
+            divCase2(ori, dest);
+            continue;
+        }
+        if (opt1 == 69) break;
     }
+}
+
+void System::changeMap() {
+    Menu changeMapMenu = Menu(controller);
+
+    string orderOption = changeMapMenu.intInputMenu("Please select the map!");
+    while(!controller.readInput(stoi(orderOption)))
+        orderOption = changeMapMenu.intInputMenu("Please select the map!", "This map does not exists!");
+}
+
+void System::nDivCase1(int ori, int dest, int groupSize) {
+
+}
+
+void System::nDivCase2(int ori, int dest) {
+
+}
+
+void System::nDivCase3(int ori, int dest) {
+
+}
+
+void System::divCase1(int ori, int dest, int groupSize) {
+
+}
+
+void System::divCase2(int ori, int dest) {
+
 }
 
 

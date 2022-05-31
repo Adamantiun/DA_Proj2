@@ -141,6 +141,13 @@ vector<Stop>& Graph::getStops(){
 void Graph::addEdge(int origin, int dest, int capacity, int duration){
     stops.at(origin).addEdge(origin, dest, capacity, duration);
 }
+
+bool Graph::has(int x) {
+    for(auto s : stops)
+        if(s.getIndex() == x)
+            return true;
+    return false;
+}
 /*
 vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest, int max) {
     resetNodes();

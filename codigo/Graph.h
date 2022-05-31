@@ -78,12 +78,7 @@ public:
     int max_capacity(Stop& a, Stop& b);
 
 
-
-
-
-
-
-
+    bool has(int x);
 };
 
 #endif
