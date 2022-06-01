@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 #include <algorithm>
 using namespace std;
 
@@ -17,6 +18,7 @@ class PriorityQueue
 private:
     // vector to store heap elements
     vector<Node> A;
+    unordered_map<int, int> pos; // maps a key into its position on the array a
     int s;
 
     // return parent of `A[i]`
@@ -88,6 +90,10 @@ public:
         s=0;
     }
 
+    bool hasKey(const int key) {
+        return pos.find(key) != pos.end();
+    }
+
     // return size of the heap
     unsigned int size() {
         return s;
@@ -103,6 +109,7 @@ public:
     {
         s++;
         Node n;
+        pos[key] = s-1;
         n.value=value;
         n.key=key;
         // insert a new element at the end of the vector
@@ -126,12 +133,21 @@ public:
             // replace the root of the heap with the last element
             // of the vector
             A[0] = A.back();
+            pos.erase(A.back().key);
             A.pop_back();
             s--;
             // call heapify-down on the root node
             heapify_down(0);
 
     }
+    void increaseKey(const int key, const int value) {
+        if (!hasKey(key)) return; // key does not exist, do nothing
+        int i = pos[key];
+        if (value < A[i].value) return; // value would increase, do nothing
+        A[i].value = value;
+        heapify_down(i);
+    }
+
 
     // Function to return an element with the highest priority (present at the root)
     int top()

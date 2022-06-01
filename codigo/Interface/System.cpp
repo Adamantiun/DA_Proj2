@@ -17,7 +17,7 @@ void System::clearScreen() {
 System::System() {
 
     controller = Controller();
-    controller.readInput(1);
+    controller.readInput(11);
     Menu baseMenu = Menu(controller);
     baseMenu.setMainOps({"Staff Optimizing", "Profit Optimizing", "Express Deliveries"});
 

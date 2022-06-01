@@ -42,12 +42,7 @@ int Graph::pathMaxCapacity(Stop& a, Stop& b){
             if (min(getStop(u).getCapacity(),edge.getCapacity()) > getStop(edge.getDest()).getCapacity() ){
                 getStop(edge.getDest()).setCapacity(min(getStop(u).getCapacity(),edge.getCapacity()));
                 getStop(edge.getDest()).setPred(u);
-                s.clean();
-                for(int i = 0; i < stops.size() ; i++) {
-                    if(!stops[i].getVisited()) {
-                        s.push(stops[i].getIndex(), stops[i].getCapacity());
-                    }
-                }
+                s.increaseKey(getStop(edge.getDest()).getIndex(),getStop(edge.getDest()).getCapacity());
 
             }
         }

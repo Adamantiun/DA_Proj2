@@ -6,7 +6,6 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20.2"
@@ -49,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/ADAM/Desktop/DA/DA_Proj2/cmake-build-debug",
-		"source" : "D:/ADAM/Desktop/DA/DA_Proj2"
+		"build" : "C:/Users/35196/OneDrive/Documentos/GitHub/DA_Proj2/cmake-build-debug",
+		"source" : "C:/Users/35196/OneDrive/Documentos/GitHub/DA_Proj2"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 2
 	}
 }
