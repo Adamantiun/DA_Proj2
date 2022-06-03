@@ -18,6 +18,7 @@ private:
     vector<Line> linesDB;
     Graph graph;
     vector<int> latestIndexGroupSize;
+    vector<Edge> usedEdges;
 public:
 
     Graph getGraph();
@@ -59,6 +60,8 @@ public:
     int getSizeAtIndex(int i);
 
     string getPrintableMaxFlow(int ori, int dest);
+
+    string recursiveFlowPrint(int ori, int dest);
 };
 
 #endif //PROJ1_CONTROLLER_H
