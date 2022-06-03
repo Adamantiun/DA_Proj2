@@ -88,6 +88,10 @@ public:
     void clearEdges();
 
     Stop &getStopi(int index);
+
+    void clearStopCaps();
+
+    void updateN(int n);
 };
 
 #endif

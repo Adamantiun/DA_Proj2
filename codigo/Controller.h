@@ -61,7 +61,7 @@ public:
 
     string getPrintableMaxFlow(int ori, int dest);
 
-    string recursiveFlowPrint(int ori, int dest);
+    string recursivePrintableFlow(int ori, int dest, int n);
 };
 
 #endif //PROJ1_CONTROLLER_H

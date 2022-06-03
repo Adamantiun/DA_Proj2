@@ -8,9 +8,6 @@
 Stop::Stop() {
     this->code = "";
     this->name = "";
-    this->zone = "";
-    this->latitude = 0;
-    this->longitude = 0;
     this->predMax = 0;
     this->capacity = 0;
 
@@ -20,20 +17,14 @@ Stop::Stop(int index) {
     this->index=index;
     this->code = "";
     this->name = "";
-    this->zone = "";
-    this->latitude = 0;
-    this->longitude = 0;
     this->predMax = 0;
     this->capacity = 0;
 
 
 }
-Stop::Stop(const string &code, const string &name, const string &zone, float latitude, float longitude) {
+Stop::Stop(const string &code, const int index) {
     this->code = code;
-    this->name = name;
-    this->zone = zone;
-    this->latitude = latitude;
-    this->longitude =longitude;
+    this->index = index;
     this->predMax = 0;
     this->capacity = 0;
 
@@ -42,7 +33,10 @@ Stop::Stop(const string &code, const string &name, const string &zone, float lat
 Stop::~Stop(){
     code.clear();
     name.clear();
-    zone.clear();
+}
+
+vector<pair<int,int>> Stop::getEntrances(){
+    return entrances;
 }
 
 const string &Stop::getCode() const {
@@ -57,16 +51,8 @@ const string &Stop::getName() const {
     return name;
 }
 
-float Stop::getLatitude() const {
-    return latitude;
-}
-
 int Stop::getPred() const {
     return pred;
-}
-
-float Stop::getLongitude() const {
-    return longitude;
 }
 
 void Stop::setCode(const string &code) {
@@ -77,20 +63,33 @@ void Stop::setName(const string &name) {
     Stop::name = name;
 }
 
-void Stop::setZone(const string &zone) {
-    Stop::zone = zone;
-}
-
-void Stop::setLatitude(float latitude) {
-    Stop::latitude = latitude;
-}
-
-void Stop::setLongitude(float longitude) {
-    Stop::longitude = longitude;
-}
-
 void Stop::setCapacity(int capacity) {
     Stop::capacity=capacity;
+}
+
+void Stop::setEntrances(vector<pair<int,int>> entrances){
+    this->entrances = entrances;
+}
+
+int Stop::getLatestEntranceTime(){
+    int ret = 0;
+    for(auto e : entrances)
+        ret = max(e.second, ret);
+    return ret;
+}
+
+int Stop::getEntranceTime(int index){
+    for(auto e : entrances)
+        if(e.first == index)
+            return e.second;
+    return 0;
+}
+
+void Stop::addEntrance(pair<int, int> entrance){
+    for(pair<int,int> p : entrances)
+        if(p == entrance)
+            return;
+    entrances.push_back(entrance);
 }
 
 istream & operator>>(istream &is, Stop &stop) {
@@ -102,26 +101,22 @@ istream & operator>>(istream &is, Stop &stop) {
     stop.setCode((string)temp);
     is.getline(temp, 100, ',');
     stop.setName((string)temp);
-    is.getline(temp, 100, ',');
-    stop.setZone((string)temp);
-    is.getline(temp, 100, ',');
-    stop.setLatitude(stof(temp));
-    is.getline(temp, 100);
-    stop.setLongitude(stof(temp));
     return is;
-}
-
-Stop::Stop(int latitude, int longitude) {
-    this->latitude = latitude;
-    this->longitude =longitude;
 }
 
 void Stop::addEdge(Edge& edge) {
     adj.push_back(edge);
 }
-
+void Stop::addEdgeA(Edge edge) {
+    edge.setOrigin(index);
+    adj.push_back(edge);
+}
 void Stop::addEdge(int origin, int dest, int capacity, int duration){
     adj.push_back(Edge(origin, dest, capacity, duration));
+}
+
+void Stop::addEdge(int dest, int capacity, int duration){
+    adj.push_back(Edge(index, dest, capacity, duration));
 }
 
 void Stop::setDistance(double distance) {

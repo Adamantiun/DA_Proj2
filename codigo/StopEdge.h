@@ -19,14 +19,12 @@ private:
     int capacity;
     string code;
     string name;
-    string zone;
-    float latitude;
-    float longitude;
     vector<Edge> adj;
     double distance;
     bool visited;
     int pred;
     int predMax;
+    vector<pair<int,int>> entrances;
 
 public:
     // Constructors
@@ -43,11 +41,8 @@ public:
     * @brief Received the necessary attributes to create a Stop object.
     * @param code
     * @param name
-    * @param zone
-    * @param latitude
-    * @param longitude
     */
-    Stop(const string &code, const string &name, const string &zone, float latitude, float longitude);
+    Stop(const string &code, const int index);
 
     /**
     * @brief Received the necessary attributes to create a Stop object.
@@ -73,13 +68,6 @@ public:
 
     /** @brief  Get capacity attribute.*/
     const int &getCapacity() const;
-
-
-    /** @brief  Get latitude attribute.*/
-    float getLatitude() const;
-
-    /** @brief  Get longitude attribute.*/
-    float getLongitude() const;
 
     /** @brief  Get pred attribute.*/
     int getPred( ) const;
@@ -121,15 +109,6 @@ public:
     /** @brief  Set name attribute.*/
     void setName(const string &name);
 
-    /** @brief  Set zone attribute.*/
-    void setZone(const string &zone);
-
-    /** @brief  Set latitude attribute.*/
-    void setLatitude(float latitude);
-
-    /** @brief  Set longitude attribute.*/
-    void setLongitude(float longitude);
-
     /** @brief  Set predLine attribute.*/
     void setPredMax(int max);
 
@@ -157,6 +136,19 @@ public:
     friend istream &operator>>(istream &is, Stop &stop);
 
 
+    void addEdge(int dest, int capacity, int duration);
+
+    void addEdgeA(Edge edge);
+
+    vector<pair<int, int>> getEntrances();
+
+    void setEntrances(vector<pair<int, int>> entrances);
+
+    void addEntrance(pair<int, int> entrance);
+
+    int getLatestEntranceTime();
+
+    int getEntranceTime(int index);
 };
 
 

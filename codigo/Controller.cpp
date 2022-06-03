@@ -118,14 +118,24 @@ int Controller::getSizeAtIndex(int i) {
     return latestIndexGroupSize[i];
 }
 
-string Controller::recursiveFlowPrint(int ori, int dest){
-    if(dest == ori)
+string Controller::recursivePrintableFlow(int ori, int dest, int n){
+    if(ori == dest)
         return "";
-    string ret = "";
-    Stop & s = graph.getStop(dest);
-    for(Edge e : usedEdges)
-        if(e.getDest() == dest)
-            ret += recursiveFlowPrint(ori, e.getOrigin());
+    string ret;
+    Stop s = graph.getStop(ori);
+    for(auto e : *s.getAdj()){
+        if(e.getSaturation()!=0 && !(count(usedEdges.begin(), usedEdges.end(), e))){
+            ret+= string(n, '.') + to_string(e.getSaturation()) + " people go from " + to_string(ori) + " to "
+                    + to_string(e.getDest()) + " taking " + to_string(e.getDuration()) + "min\n";
+            if(graph.getStop(e.getDest()).getLatestEntranceTime() > graph.getStop(e.getDest()).getEntranceTime(s.getIndex())){
+                ret.pop_back();
+                int wait = graph.getStop(e.getDest()).getLatestEntranceTime() - graph.getStop(e.getDest()).getEntranceTime(s.getIndex());
+                ret += " and wait there " + to_string(wait) + "min\n";
+            }
+            ret+= recursivePrintableFlow(e.getDest(), dest, n + 1);
+            usedEdges.push_back(e);
+        }
+    }
     return ret;
 }
 
@@ -134,12 +144,7 @@ string Controller::getPrintableMaxFlow(int ori, int dest) {
     string ret = "You can take up to " + to_string(maxFlow) + " people from " + to_string(ori)
             + " to " + to_string(dest) + "!\nAnd here's the path:\n";
     usedEdges = {};
-    for (auto & s : graph.getStops())
-        for (auto & e : *s.getAdj())
-            if(e.getSaturation()>0)
-                //usedEdges.push_back(e);
-                ret+= "From " + to_string(e.getOrigin()) + " to " + to_string(e.getDest())
-                        + " with " + to_string(e.getSaturation()) + " people\n";
+    ret += recursivePrintableFlow(ori, dest, 0);
     ret.pop_back();
     return ret;
 }
