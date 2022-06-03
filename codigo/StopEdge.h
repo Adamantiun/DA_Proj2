@@ -7,6 +7,7 @@
 
 #include <string>
 #include <list>
+#include <vector>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ private:
     string zone;
     float latitude;
     float longitude;
-    list<Edge> adj;
+    vector<Edge> adj;
     double distance;
     bool visited;
     int pred;
@@ -66,8 +67,8 @@ public:
     /** @brief  Get name attribute.*/
     const string &getName() const;
 
-    /** @brief  Get zone attribute.*/
-    const string &getZone() const;
+    /** @brief  Get edge leading to given stop.*/
+    Edge& getEdge(int index);
 
 
     /** @brief  Get capacity attribute.*/
@@ -90,7 +91,7 @@ public:
     bool getVisited() const;
 
     /** @brief  Get adj attribute.*/
-    list<Edge> getAdj();
+    vector<struct Edge> * getAdj();
 
     /** @brief  Get predLine attribute.*/
     int getPredMax() const;
@@ -165,6 +166,7 @@ private:
     int origin;
     int dest;
     int capacity;
+    int saturation;
     int duration;
 public:
     // Constructors
@@ -190,6 +192,9 @@ public:
     /** @brief  Get dest attribute.*/
     int getDuration();
 
+    /** @brief  Get dest attribute.*/
+    int getSaturation();
+
     //Sets
     /** @brief  Set dest attribute.*/
     void setOrigin(int origin);
@@ -201,8 +206,10 @@ public:
     void setCapacity(int capacity);
 
     /** @brief  Set dest attribute.*/
-    void setDuration(int durantion);
+    void setDuration(int duration);
 
+    /** @brief  Set dest attribute.*/
+    void setSaturation(int saturation);
 
 
     //Operators

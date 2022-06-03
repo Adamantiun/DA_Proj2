@@ -67,11 +67,8 @@ public:
     /** @brief  Dijkstra algorithm that returns the path the least distance.*/
     vector<int> dijkstraCapacity (Stop& a, Stop& b, int groupSize);
 
-    /** @brief  Dijkstra algorithm that returns the path the least number of zones.*/
-    vector<pair<int, string>> dijkstra_zones(int a, int b);
-
-    /** @brief  Bfs algorithm that returns the path the least number of Stops.*/
-    vector<pair<int, std::string>> bfs(Stop& origin, Stop& dest);
+    /** @brief  Bfs algorithm that returns existance of path.*/
+    int bfs(Stop& origin, Stop& dest);
 
     //Resents
     /** @brief  Reset every Stop.*/
@@ -85,6 +82,12 @@ public:
     int pathMaxCapacity(int a, int b);
 
     int getPathTime(vector<int> path);
+
+    int fordFulk(Stop &ori, Stop &dest);
+
+    void clearEdges();
+
+    Stop &getStopi(int index);
 };
 
 #endif

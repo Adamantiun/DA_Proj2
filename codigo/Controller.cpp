@@ -47,7 +47,6 @@ bool Controller::readInput(int inNo) {
         getline(inputFile,line);
         edge.setDuration(stoi(line));
         graph.getStop(edge.getOrigin()).addEdge(edge);
-
     }
     inputFile.close();
     return true;
@@ -117,6 +116,19 @@ vector<string> Controller::getEquiEfficientOpts(int ori, int dest, float& retMax
 
 int Controller::getSizeAtIndex(int i) {
     return latestIndexGroupSize[i];
+}
+
+string Controller::getPrintableMaxFlow(int ori, int dest) {
+    int maxFlow = graph.fordFulk(graph.getStop(ori), graph.getStop(dest));
+    string ret = "You can take up to " + to_string(maxFlow) + " people from " + to_string(ori)
+            + " to " + to_string(dest) + "!\nAnd here's the path:\n";
+    for (auto & s : graph.getStops())
+        for (auto & e : *s.getAdj())
+            if(e.getSaturation()>0)
+                ret+= "From " + to_string(e.getOrigin()) + " to " + to_string(e.getDest())
+                        + " with " + to_string(e.getSaturation()) + " people\n";
+    ret.pop_back();
+    return ret;
 }
 
 

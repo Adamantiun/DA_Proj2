@@ -29,7 +29,7 @@ int Graph::pathMaxCapacity(Stop& a, Stop& b){
         stops[i].setVisited(false);
         stops[i].setPred(i);
     }
-    getStop(a.getIndex()).setCapacity(1000);
+    getStop(a.getIndex()).setCapacity(INT_MAX);
     struct PriorityQueue s;
     for(int i = 0; i < stops.size(); i++) {
         s.push(stops[i].getIndex(),stops[i].getCapacity());
@@ -38,7 +38,7 @@ int Graph::pathMaxCapacity(Stop& a, Stop& b){
         int u = s.top();
         s.pop();
         getStop(u).setVisited(true);
-        for (Edge& edge : getStop(u).getAdj()){
+        for (Edge& edge : *(getStop(u).getAdj())){
             if (min(getStop(u).getCapacity(),edge.getCapacity()) > getStop(edge.getDest()).getCapacity() ){
                 getStop(edge.getDest()).setCapacity(min(getStop(u).getCapacity(),edge.getCapacity()));
                 getStop(edge.getDest()).setPred(u);
@@ -61,7 +61,7 @@ vector<int> Graph::dijkstraCapacity(Stop& a, Stop& b, int groupSize) {
     while (q.getSize()!=0){
         int u = q.removeMin();
         getStop(u).setVisited(true);
-        for (Edge& edge : getStop(u).getAdj()){
+        for (Edge& edge : *(getStop(u).getAdj())){
             if(edge.getCapacity()<groupSize) continue;
             double tempDist = getStop(u).getDistance() + 1;
             if ((tempDist < getStop(edge.getDest()).getDistance()) && q.hasKey(edge.getDest())){
@@ -121,6 +121,10 @@ Stop &Graph::getStop(int index) {
             return stops.at(i);
     }
 }
+
+Stop &Graph::getStopi(int index){
+    return stops[index];
+}
 Stop& Graph::getStop(string code){
     for(int i=0;i<n;i++){
         if(stops.at(i).getCode() == code)
@@ -145,7 +149,7 @@ bool Graph::has(int x) {
 }
 
 Edge Graph::getEdge(Stop a, Stop b) {
-    for(auto e : getStop(a.getIndex()).getAdj()){
+    for(auto e : *(getStop(a.getIndex()).getAdj())){
         if(e.getDest() == b.getIndex())
             return e;
     }
@@ -158,8 +162,8 @@ int Graph::getPathTime(vector<int> path) {
         ret += getEdge(getStop(path[i-1]), getStop(path[i])).getDuration();
     return ret;
 }
-/*
-vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest, int max) {
+
+int Graph::bfs(Stop& origin, Stop& dest) {
     resetNodes();
     queue<Stop> q; // queue of unvisited nodes
     q.push(origin);
@@ -167,17 +171,36 @@ vector<pair<int, std::string>> Graph::bfs(Stop& origin, Stop& dest, int max) {
     while (!q.empty()) { // while there are still unvisited nodes
         Stop u = q.front();
         q.pop();
-        for (auto e : u.getAdj()) {
-            int w = e.getDest();
-            if (!stops[w].getVisited() ) {
-                q.push(stops[w]);
-                stops[w].setVisited(true);
-                stops[w].setPred(u.getIndex());
-                stops[w].setPredLine(e.getLineCode());
+        for (Edge & e : *u.getAdj()) {
+            Stop*w = &getStop(e.getDest());
+            if (!w->getVisited() && e.getCapacity()-e.getSaturation()>0) {
+                q.push(*(w));
+                w->setVisited(true);
+                w->setPred(getStop(u.getIndex()).getIndex());
             }
         }
     }
-    return getPath(origin, dest);
+    return dest.getVisited();
 }
 
-*/
+void Graph::clearEdges(){
+    for (auto & stop : stops)
+        for (auto & j : *stop.getAdj())
+            j.setSaturation(0);
+}
+
+int Graph::fordFulk(Stop& ori, Stop& dest){
+    clearEdges();
+    int maxFlow = 0;
+    while (bfs(getStop(ori.getIndex()), getStop(dest.getIndex()))) {
+        int pathFlow = INT_MAX;
+        for (Stop *s = &dest; s != &getStop(ori.getIndex()); s = &getStop(s->getPred())) {
+            pathFlow = min(pathFlow, getEdge(s->getPred(), s->getIndex()).getCapacity() - getEdge(s->getPred(), s->getIndex()).getSaturation());
+        }
+        maxFlow += pathFlow;
+        for (Stop *s = &dest; s != &getStop(ori.getIndex()); s = &getStop(s->getPred())) {
+            getStop(s->getPred()).getEdge( s->getIndex()).setSaturation(getEdge(s->getPred(), s->getIndex()).getSaturation() + pathFlow);
+        }
+    }
+    return maxFlow;
+}

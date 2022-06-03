@@ -57,10 +57,6 @@ const string &Stop::getName() const {
     return name;
 }
 
-const string &Stop::getZone() const {
-    return zone;
-}
-
 float Stop::getLatitude() const {
     return latitude;
 }
@@ -148,8 +144,14 @@ bool Stop::getVisited() const {
     return visited;
 }
 
-list<Edge> Stop::getAdj() {
-    return adj;
+vector<Edge> * Stop::getAdj() {
+    return &adj;
+}
+
+Edge& Stop::getEdge(int index) {
+    for(int i=0; i<adj.size(); i++)
+        if(adj[i].getDest() == index)
+            return adj[i];
 }
 
 void Stop::setIndex(int index) {
@@ -210,8 +212,8 @@ void Edge::setCapacity(int capacity) {
     this->capacity=capacity;
 }
 
-void Edge::setDuration(int durantion) {
-    this->duration=durantion;
+void Edge::setDuration(int duration) {
+    this->duration=duration;
 }
 
 void Edge::setOrigin(int origin) {
@@ -220,5 +222,13 @@ void Edge::setOrigin(int origin) {
 
 void Edge::setDest(int  dest) {
     this->dest = dest;
+}
+
+int Edge::getSaturation() {
+    return saturation;
+}
+
+void Edge::setSaturation(int saturation) {
+    this->saturation = saturation;
 }
 

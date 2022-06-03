@@ -57,6 +57,8 @@ public:
     vector<string> getEquiEfficientOpts(int ori, int dest, float& retMaxCaptaPerConnect);
 
     int getSizeAtIndex(int i);
+
+    string getPrintableMaxFlow(int ori, int dest);
 };
 
 #endif //PROJ1_CONTROLLER_H

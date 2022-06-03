@@ -17,7 +17,7 @@ void System::clearScreen() {
 System::System() {
 
     controller = Controller();
-    controller.readInput(11);
+    controller.readInput(1);
     Menu baseMenu = Menu(controller);
     baseMenu.setMainOps({"Staff Optimizing", "Profit Optimizing", "Express Deliveries"});
 
@@ -111,7 +111,7 @@ void System::nDivCase3(int ori, int dest) {
     vector<string> opts = controller.getEquiEfficientOpts(ori, dest, n);
 
     int op1 = tempMenu.printOptionsMenu(opts,
-                              "Here are the most efficient paths, with " + ftos(n, 2)  + " bus rides per person:");
+                              "Here are the most efficient paths, \nwith " + ftos(n, 2)  + " bus rides per person:");
     int groupSize = controller.getSizeAtIndex(op1);
     string message = controller.getPrintableDikjCapacity(ori, dest, groupSize);
     tempMenu.singleInputScreen(message);
@@ -122,7 +122,9 @@ void System::divCase1(int ori, int dest, int groupSize) {
 }
 
 void System::divCase2(int ori, int dest) {
-
+    Menu tempMenu(controller);
+    string message = controller.getPrintableMaxFlow(ori, dest);
+    tempMenu.singleInputScreen(message);
 }
 
 string System::ftos(float n, int i) {
@@ -136,15 +138,11 @@ string System::ftos(float n, int i) {
     ret.push_back(s[j++]);
     for(int k = 0; k < i; k++)
         ret.push_back(s[j++]);
-    j--;
-    if(s[j] == '0') {
-        while (s[j] == '0'){
-            s.resize(s.size()-1);
-            j--;
-        }
+    while (ret[--j] == '0') {
+        ret.resize(ret.size() - 1);
     }
-    if(s[j] == '.')
-        s.resize(s.size()-1);
+    if(ret[j] == '.')
+        ret.resize(ret.size()-1);
     return ret;
 }
 
