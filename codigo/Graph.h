@@ -87,11 +87,9 @@ public:
 
     void clearEdges();
 
-    Stop &getStopi(int index);
-
     void clearStopCaps();
 
-    void updateN(int n);
+    int fordFulkLim(Stop &ori, Stop &dest, int lim);
 };
 
 #endif

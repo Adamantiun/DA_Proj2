@@ -144,8 +144,32 @@ string Controller::getPrintableMaxFlow(int ori, int dest) {
     string ret = "You can take up to " + to_string(maxFlow) + " people from " + to_string(ori)
             + " to " + to_string(dest) + "!\nAnd here's the path:\n";
     usedEdges = {};
-    ret += recursivePrintableFlow(ori, dest, 0);
+    ret += recursivePrintableFlow(ori, dest);
     ret.pop_back();
+    return ret;
+}
+
+string Controller::getPrintableLimFlow(int ori, int dest, int groupSize) {
+    graph.clearEdges();
+    graph.clearStopCaps();
+    int flow = graph.fordFulkLim(graph.getStop(ori), graph.getStop(dest), groupSize);
+    if (flow == 0)
+        return "You can't take that many people though that path";
+    string ret = "Here's the path taking " + to_string(groupSize) + " people from "
+            + to_string(ori) + " to " + to_string(dest) + ":\n";
+    usedEdges = {};
+    ret+= recursivePrintableFlow(ori, dest);
+    return ret;
+}
+
+string Controller::getPrintableLimFlow(int ori, int dest, int groupSize, int addToGroup) {
+    int flow = graph.fordFulkLim(graph.getStop(ori), graph.getStop(dest), addToGroup);
+    if (flow == 0)
+        return "You can't take that many people though that path";
+    string ret = "Here's the path taking " + to_string(groupSize+addToGroup) + " people from "
+                 + to_string(ori) + " to " + to_string(dest) + ":\n";
+    usedEdges = {};
+    ret+= recursivePrintableFlow(ori, dest);
     return ret;
 }
 

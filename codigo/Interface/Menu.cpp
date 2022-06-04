@@ -72,14 +72,14 @@ string Menu::intInputMenu(string message, string footer, int lowerBound, int upp
 }
 
 void Menu::singleInputScreen(string m1, string requestedInput, string m2){
-    string input = "";
-    while(input != requestedInput) {
+    string input;
+    while(!(input == requestedInput || (input== "b" && requestedInput.size()==1))) {
         printUpperFrame();
         cout << m1 << endl;
         printLowerFrame();
-        if(input!="")
+        if(!input.empty())
             cout << "Invalid Input!" << endl;
-        if (m2!="")
+        if (!m2.empty())
             cout << m2 << endl;
         else
             cout << "Type " << requestedInput << " to go back: ";

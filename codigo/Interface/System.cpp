@@ -66,7 +66,7 @@ System::System() {
             if(opt3 == 2)
                 continue;
             if(opt3 == 0){
-                int np = stoi(baseMenu.intInputMenu("How manny people are you taking?"));
+                int np = stoi(baseMenu.intInputMenu("How many people are you taking?"));
                 divCase1(ori, dest, np);
                 continue;
             }
@@ -118,7 +118,17 @@ void System::nDivCase3(int ori, int dest) {
 }
 
 void System::divCase1(int ori, int dest, int groupSize) {
-
+    Menu tempMenu(controller);
+    string message = controller.getPrintableLimFlow(ori, dest, groupSize);
+    while(message[0] != 'Y'){
+        int opt = tempMenu.printOptionsMenu({"Add more passengers", "Go Back"},message);
+        if(opt == 1)
+            return;
+        int addToGroup = stoi(tempMenu.intInputMenu("How many more?"));
+        message = controller.getPrintableLimFlow(ori, dest, groupSize, addToGroup);
+        groupSize+=addToGroup;
+    }
+    tempMenu.singleInputScreen(message);
 }
 
 void System::divCase2(int ori, int dest) {

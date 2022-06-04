@@ -18,10 +18,6 @@ void Graph::addStop(Stop &stop) {
     this->stops.push_back(stop);
 }
 
-void Graph::updateN(int n){
-    this->n = n;
-}
-
 int Graph::pathMaxCapacity(int a, int b){
     return pathMaxCapacity(getStop(a), getStop(b));
 }
@@ -125,9 +121,6 @@ Stop &Graph::getStop(int index) {
     }
 }
 
-Stop &Graph::getStopi(int index){
-    return stops[index];
-}
 Stop& Graph::getStop(string code){
     for(int i=0;i<n;i++){
         if(stops.at(i).getCode() == code)
@@ -210,8 +203,31 @@ int Graph::fordFulk(Stop& ori, Stop& dest){
             getStop(s->getPred()).getEdge( s->getIndex()).setSaturation(getEdge(s->getPred(), s->getIndex()).getSaturation() + pathFlow);
         }
     }
-    //getStop(ori.getIndex()).setCapacity(maxFlow);
     return maxFlow;
+}
+
+int Graph::fordFulkLim(Stop& ori, Stop& dest, int lim){
+    int flow = 0;
+    while (bfs(getStop(ori.getIndex()), getStop(dest.getIndex())) && lim>0) {
+        int pathFlow = INT_MAX;
+        for (Stop *s = &dest; s != &getStop(ori.getIndex()); s = &getStop(s->getPred())) {
+            pathFlow = min(pathFlow, getEdge(s->getPred(), s->getIndex()).getCapacity() - getEdge(s->getPred(), s->getIndex()).getSaturation());
+        }
+        if(pathFlow > lim)
+            pathFlow = lim;
+        lim-=pathFlow;
+        flow += pathFlow;
+        int time = getPathTime(getPath(getStop(ori.getIndex()), getStop(dest.getIndex())));
+        for (Stop *s = &dest; s != &getStop(ori.getIndex()); s = &getStop(s->getPred())) {
+            s->setCapacity(s->getCapacity()+pathFlow);
+            s->addEntrance({s->getPred(), time});
+            time -= getStop(s->getPred()).getEdge( s->getIndex()).getDuration();
+            getStop(s->getPred()).getEdge( s->getIndex()).setSaturation(getEdge(s->getPred(), s->getIndex()).getSaturation() + pathFlow);
+        }
+    }
+    if(lim!=0)
+        return 0;
+    return flow;
 }
 
 void Graph::clearStopCaps() {

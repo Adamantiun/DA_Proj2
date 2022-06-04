@@ -61,7 +61,11 @@ public:
 
     string getPrintableMaxFlow(int ori, int dest);
 
-    string recursivePrintableFlow(int ori, int dest, int n);
+    string recursivePrintableFlow(int ori, int dest, int n=0);
+
+    string getPrintableLimFlow(int ori, int dest, int groupSize);
+
+    string getPrintableLimFlow(int ori, int dest, int groupSize, int addToGroup);
 };
 
 #endif //PROJ1_CONTROLLER_H
