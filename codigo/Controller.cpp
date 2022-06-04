@@ -145,7 +145,10 @@ string Controller::getPrintableMaxFlow(int ori, int dest) {
             + " to " + to_string(dest) + "!\nAnd here's the path:\n";
     usedEdges = {};
     ret += recursivePrintableFlow(ori, dest);
-    ret.pop_back();
+    ret+= "\nAnd the group will be fully able to regroup at:";
+    for(auto s:graph.getStops())
+        if(s.getCapacity() == maxFlow)
+            ret+= "\nStop " + to_string(s.getIndex());
     return ret;
 }
 
@@ -159,6 +162,10 @@ string Controller::getPrintableLimFlow(int ori, int dest, int groupSize) {
             + to_string(ori) + " to " + to_string(dest) + ":\n";
     usedEdges = {};
     ret+= recursivePrintableFlow(ori, dest);
+    ret+= "\nAnd the group will be fully able to regroup at:";
+    for(auto s:graph.getStops())
+        if(s.getCapacity() == groupSize)
+            ret+= "\nStop " + to_string(s.getIndex());
     return ret;
 }
 
@@ -170,6 +177,10 @@ string Controller::getPrintableLimFlow(int ori, int dest, int groupSize, int add
                  + to_string(ori) + " to " + to_string(dest) + ":\n";
     usedEdges = {};
     ret+= recursivePrintableFlow(ori, dest);
+    ret+= "\nAnd the group will be fully able to regroup at:";
+    for(auto s:graph.getStops())
+        if(s.getCapacity() == groupSize+addToGroup)
+            ret+= "\n -Stop " + to_string(s.getIndex());
     return ret;
 }
 
