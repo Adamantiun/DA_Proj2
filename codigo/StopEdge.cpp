@@ -8,59 +8,51 @@
 Stop::Stop() {
     this->code = "";
     this->name = "";
-    this->zone = "";
-    this->latitude = 0;
-    this->longitude = 0;
-    this->predLine = "";
+    this->predMax = 0;
+    this->capacity = 0;
+
 }
 
 Stop::Stop(int index) {
     this->index=index;
     this->code = "";
     this->name = "";
-    this->zone = "";
-    this->latitude = 0;
-    this->longitude = 0;
-    this->predLine = "";
+    this->predMax = 0;
+    this->capacity = 0;
+
 
 }
-Stop::Stop(const string &code, const string &name, const string &zone, float latitude, float longitude) {
+Stop::Stop(const string &code, const int index) {
     this->code = code;
-    this->name = name;
-    this->zone = zone;
-    this->latitude = latitude;
-    this->longitude =longitude;
-    this->predLine = "";
+    this->index = index;
+    this->predMax = 0;
+    this->capacity = 0;
+
 }
 
 Stop::~Stop(){
     code.clear();
     name.clear();
-    zone.clear();
+}
+
+vector<pair<int,int>> Stop::getEntrances(){
+    return entrances;
 }
 
 const string &Stop::getCode() const {
     return code;
 }
 
+const int &Stop::getCapacity() const {
+    return capacity;
+}
+
 const string &Stop::getName() const {
     return name;
 }
 
-const string &Stop::getZone() const {
-    return zone;
-}
-
-float Stop::getLatitude() const {
-    return latitude;
-}
-
 int Stop::getPred() const {
     return pred;
-}
-
-float Stop::getLongitude() const {
-    return longitude;
 }
 
 void Stop::setCode(const string &code) {
@@ -71,16 +63,39 @@ void Stop::setName(const string &name) {
     Stop::name = name;
 }
 
-void Stop::setZone(const string &zone) {
-    Stop::zone = zone;
+void Stop::setCapacity(int capacity) {
+    Stop::capacity=capacity;
 }
 
-void Stop::setLatitude(float latitude) {
-    Stop::latitude = latitude;
+void Stop::setEntrances(vector<pair<int,int>> entrances){
+    this->entrances = entrances;
 }
 
-void Stop::setLongitude(float longitude) {
-    Stop::longitude = longitude;
+int Stop::getLatestEntranceTime(){
+    int ret = 0;
+    for(auto e : entrances)
+        ret = max(e.second, ret);
+    return ret;
+}
+
+int Stop::getEntranceTime(int index){
+    for(auto e : entrances)
+        if(e.first == index)
+            return e.second;
+    return 0;
+}
+
+void Stop::addEntrance(pair<int, int> entrance){
+    for(auto & e : entrances)
+        if(e.first == entrance.first){
+            if(e.second >= entrance.second)
+                return;
+            else {
+                e = entrance;
+                return;
+            }
+        }
+    entrances.push_back(entrance);
 }
 
 istream & operator>>(istream &is, Stop &stop) {
@@ -92,26 +107,22 @@ istream & operator>>(istream &is, Stop &stop) {
     stop.setCode((string)temp);
     is.getline(temp, 100, ',');
     stop.setName((string)temp);
-    is.getline(temp, 100, ',');
-    stop.setZone((string)temp);
-    is.getline(temp, 100, ',');
-    stop.setLatitude(stof(temp));
-    is.getline(temp, 100);
-    stop.setLongitude(stof(temp));
     return is;
-}
-
-Stop::Stop(int latitude, int longitude) {
-    this->latitude = latitude;
-    this->longitude =longitude;
 }
 
 void Stop::addEdge(Edge& edge) {
     adj.push_back(edge);
 }
-
+void Stop::addEdgeA(Edge edge) {
+    edge.setOrigin(index);
+    adj.push_back(edge);
+}
 void Stop::addEdge(int origin, int dest, int capacity, int duration){
     adj.push_back(Edge(origin, dest, capacity, duration));
+}
+
+void Stop::addEdge(int dest, int capacity, int duration){
+    adj.push_back(Edge(index, dest, capacity, duration));
 }
 
 void Stop::setDistance(double distance) {
@@ -134,8 +145,14 @@ bool Stop::getVisited() const {
     return visited;
 }
 
-list<Edge> Stop::getAdj() {
-    return adj;
+vector<Edge> * Stop::getAdj() {
+    return &adj;
+}
+
+Edge& Stop::getEdge(int index) {
+    for(int i=0; i<adj.size(); i++)
+        if(adj[i].getDest() == index)
+            return adj[i];
 }
 
 void Stop::setIndex(int index) {
@@ -146,12 +163,12 @@ int Stop::getIndex() const {
     return index;
 }
 
-void Stop::setPredLine(string line) {
-    predLine = line;
+void Stop::setPredMax(int max) {
+    predMax = max;
 }
 
-string Stop::getPredLine() const{
-    return predLine;
+int Stop::getPredMax() const{
+    return predMax;
 }
 
 bool Stop::isInAdj(Stop &stop) {
@@ -196,8 +213,8 @@ void Edge::setCapacity(int capacity) {
     this->capacity=capacity;
 }
 
-void Edge::setDuration(int durantion) {
-    this->duration=durantion;
+void Edge::setDuration(int duration) {
+    this->duration=duration;
 }
 
 void Edge::setOrigin(int origin) {
@@ -206,5 +223,13 @@ void Edge::setOrigin(int origin) {
 
 void Edge::setDest(int  dest) {
     this->dest = dest;
+}
+
+int Edge::getSaturation() {
+    return saturation;
+}
+
+void Edge::setSaturation(int saturation) {
+    this->saturation = saturation;
 }
 

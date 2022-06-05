@@ -17,7 +17,11 @@ private:
     vector<Stop> stopDB;
     vector<Line> linesDB;
     Graph graph;
+    vector<int> latestIndexGroupSize;
+    vector<Edge> usedEdges;
 public:
+
+    Graph getGraph();
     // Constructors
     /** @brief  Default constructor.*/
     Controller();
@@ -49,6 +53,19 @@ public:
 
     //Sceneries
 
+    string getPrintableDikjCapacity(int ori, int dest, int groupSize);
+
+    vector<string> getEquiEfficientOpts(int ori, int dest, float& retMaxCaptaPerConnect);
+
+    int getSizeAtIndex(int i);
+
+    string getPrintableMaxFlow(int ori, int dest);
+
+    string recursivePrintableFlow(int ori, int dest, int n=0);
+
+    string getPrintableLimFlow(int ori, int dest, int groupSize);
+
+    string getPrintableLimFlow(int ori, int dest, int groupSize, int addToGroup);
 };
 
 #endif //PROJ1_CONTROLLER_H

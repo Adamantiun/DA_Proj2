@@ -10,6 +10,8 @@
 #include <queue>
 #include <iostream>
 #include "StopEdge.h"
+#include "maxHeap.h"
+
 
 using namespace std;
 
@@ -33,12 +35,11 @@ public:
     Graph(int nodes, bool dir = false);
 
     // Gets
-
     /** @brief  Get Stop wich is the destination of an edge.*/
     Stop& getDest(Edge edge);
 
     /** @brief  Get path between 2 Stops.*/
-    vector<pair<int, std::string>> getPath(Stop& a, Stop& b);
+    vector<int> getPath(Stop& a, Stop& b);
 
     /** @brief  Get Stop with some index.*/
     Stop& getStop(int index);
@@ -52,7 +53,7 @@ public:
     /** @brief  Get index of a Stop with some code.*/
     int getIndexStop(string code);
 
-    bool has(int x);
+    Edge getEdge(Stop a, Stop b);
 
     //Adds
     /** @brief  Add a Stop.*/
@@ -64,24 +65,31 @@ public:
     //Algorithms
 
     /** @brief  Dijkstra algorithm that returns the path the least distance.*/
-    vector<pair<int, std::string>> dijkstra_distance (Stop& a, Stop& b);
+    vector<int> dijkstraCapacity (Stop& a, Stop& b, int groupSize);
 
-    /** @brief  Dijkstra algorithm that returns the path the least number of zones.*/
-    vector<pair<int, string>> dijkstra_zones(int a, int b);
-
-    /** @brief  Bfs algorithm that returns the path the least number of Stops.*/
-    vector<pair<int, std::string>> bfs(Stop& origin, Stop& dest);
+    /** @brief  Bfs algorithm that returns existance of path.*/
+    int bfs(Stop& origin, Stop& dest);
 
     //Resents
     /** @brief  Reset every Stop.*/
     void resetNodes();
 
+    int pathMaxCapacity(Stop& a, Stop& b);
 
 
+    bool has(int x);
 
+    int pathMaxCapacity(int a, int b);
 
+    int getPathTime(vector<int> path);
 
+    int fordFulk(Stop &ori, Stop &dest);
 
+    void clearEdges();
+
+    void clearStopCaps();
+
+    int fordFulkLim(Stop &ori, Stop &dest, int lim);
 };
 
 #endif

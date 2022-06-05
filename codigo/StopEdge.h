@@ -7,6 +7,7 @@
 
 #include <string>
 #include <list>
+#include <vector>
 
 using namespace std;
 
@@ -15,16 +16,15 @@ class Edge;
 class Stop {
 private:
     int index;
+    int capacity;
     string code;
     string name;
-    string zone;
-    float latitude;
-    float longitude;
-    list<Edge> adj;
+    vector<Edge> adj;
     double distance;
     bool visited;
     int pred;
-    string predLine;
+    int predMax;
+    vector<pair<int,int>> entrances;
 
 public:
     // Constructors
@@ -41,11 +41,8 @@ public:
     * @brief Received the necessary attributes to create a Stop object.
     * @param code
     * @param name
-    * @param zone
-    * @param latitude
-    * @param longitude
     */
-    Stop(const string &code, const string &name, const string &zone, float latitude, float longitude);
+    Stop(const string &code, const int index);
 
     /**
     * @brief Received the necessary attributes to create a Stop object.
@@ -65,14 +62,12 @@ public:
     /** @brief  Get name attribute.*/
     const string &getName() const;
 
-    /** @brief  Get zone attribute.*/
-    const string &getZone() const;
+    /** @brief  Get edge leading to given stop.*/
+    Edge& getEdge(int index);
 
-    /** @brief  Get latitude attribute.*/
-    float getLatitude() const;
 
-    /** @brief  Get longitude attribute.*/
-    float getLongitude() const;
+    /** @brief  Get capacity attribute.*/
+    const int &getCapacity() const;
 
     /** @brief  Get pred attribute.*/
     int getPred( ) const;
@@ -84,10 +79,10 @@ public:
     bool getVisited() const;
 
     /** @brief  Get adj attribute.*/
-    list<Edge> getAdj();
+    vector<struct Edge> * getAdj();
 
     /** @brief  Get predLine attribute.*/
-    string getPredLine() const;
+    int getPredMax() const;
 
     /** @brief  Get index attribute.*/
     int getIndex() const;
@@ -95,6 +90,9 @@ public:
     //Sets
     /** @brief  Set index attribute.*/
     void setIndex(int index);
+
+    /** @brief  Set capacity attribute.*/
+    void setCapacity(int capacity);
 
     /** @brief  Set code attribute.*/
     void setCode(const string &code);
@@ -111,17 +109,8 @@ public:
     /** @brief  Set name attribute.*/
     void setName(const string &name);
 
-    /** @brief  Set zone attribute.*/
-    void setZone(const string &zone);
-
-    /** @brief  Set latitude attribute.*/
-    void setLatitude(float latitude);
-
-    /** @brief  Set longitude attribute.*/
-    void setLongitude(float longitude);
-
     /** @brief  Set predLine attribute.*/
-    void setPredLine(string line);
+    void setPredMax(int max);
 
     //Adds
     /** @brief  Add an edge.*/
@@ -147,6 +136,19 @@ public:
     friend istream &operator>>(istream &is, Stop &stop);
 
 
+    void addEdge(int dest, int capacity, int duration);
+
+    void addEdgeA(Edge edge);
+
+    vector<pair<int, int>> getEntrances();
+
+    void setEntrances(vector<pair<int, int>> entrances);
+
+    void addEntrance(pair<int, int> entrance);
+
+    int getLatestEntranceTime();
+
+    int getEntranceTime(int index);
 };
 
 
@@ -156,6 +158,7 @@ private:
     int origin;
     int dest;
     int capacity;
+    int saturation;
     int duration;
 public:
     // Constructors
@@ -181,6 +184,9 @@ public:
     /** @brief  Get dest attribute.*/
     int getDuration();
 
+    /** @brief  Get dest attribute.*/
+    int getSaturation();
+
     //Sets
     /** @brief  Set dest attribute.*/
     void setOrigin(int origin);
@@ -192,8 +198,10 @@ public:
     void setCapacity(int capacity);
 
     /** @brief  Set dest attribute.*/
-    void setDuration(int durantion);
+    void setDuration(int duration);
 
+    /** @brief  Set dest attribute.*/
+    void setSaturation(int saturation);
 
 
     //Operators

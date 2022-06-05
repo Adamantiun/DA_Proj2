@@ -33,13 +33,13 @@ int Menu::printOptionsMenu(vector<string> options, string header, string footer)
 }
 
 void Menu::printLowerFrame(){
-    for (size_t i = 0; i < 62; i++)
+    for (size_t i = 0; i < 61; i++)
         cout << (char)205;
     cout << endl;
 }
 
 void Menu::printUpperFrame() {
-    for (size_t i = 0; i < 54; i++)
+    for (size_t i = 0; i < 53; i++)
         cout << (char)205;
     cout << (char)185 <<"Q:Quit" << (char)204 << endl;
 }
@@ -72,14 +72,14 @@ string Menu::intInputMenu(string message, string footer, int lowerBound, int upp
 }
 
 void Menu::singleInputScreen(string m1, string requestedInput, string m2){
-    string input = "";
-    while(input != requestedInput) {
+    string input;
+    while(!(input == requestedInput || (input== "b" && requestedInput.size()==1))) {
         printUpperFrame();
         cout << m1 << endl;
         printLowerFrame();
-        if(input!="")
+        if(!input.empty())
             cout << "Invalid Input!" << endl;
-        if (m2!="")
+        if (!m2.empty())
             cout << m2 << endl;
         else
             cout << "Type " << requestedInput << " to go back: ";
