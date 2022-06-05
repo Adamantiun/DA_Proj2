@@ -86,9 +86,15 @@ int Stop::getEntranceTime(int index){
 }
 
 void Stop::addEntrance(pair<int, int> entrance){
-    for(pair<int,int> p : entrances)
-        if(p == entrance)
-            return;
+    for(auto & e : entrances)
+        if(e.first == entrance.first){
+            if(e.second >= entrance.second)
+                return;
+            else {
+                e = entrance;
+                return;
+            }
+        }
     entrances.push_back(entrance);
 }
 
