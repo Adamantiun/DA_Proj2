@@ -5,6 +5,7 @@
 #include "System.h"
 #include <string>
 #include <iostream>
+#include <chrono>
 #include <regex>
 
 using namespace std;
@@ -15,7 +16,7 @@ void System::clearScreen() {
 
 
 System::System() {
-
+    chrono::steady_clock sc;
     controller = Controller();
     controller.readInput(1);
     Menu baseMenu = Menu(controller);
@@ -36,9 +37,15 @@ System::System() {
         while(!controller.getGraph().has(dest)){
             dest = stoi(baseMenu.intInputMenu("Where would you like to go?", "This stop does not exist!"));
         }
+        auto start = sc.now();
         if(controller.getGraph().pathMaxCapacity(ori, dest) == 0){
+            auto time_span = static_cast<chrono::duration<double>>(sc.now() - start);
+            cout << to_string(time_span.count()) << endl;
             baseMenu.singleInputScreen("Sorry, but there's no path between those stops");
             continue;
+        }else{
+            auto time_span = static_cast<chrono::duration<double>>(sc.now() - start);
+            cout << to_string(time_span.count()) << endl;
         }
         int opt2 = baseMenu.printOptionsMenu({"Yes", "No", "Go back"},"Are you willing to split your group?");
         if(opt2 == 2)
@@ -133,7 +140,11 @@ void System::divCase1(int ori, int dest, int groupSize) {
 
 void System::divCase2(int ori, int dest) {
     Menu tempMenu(controller);
+    chrono::steady_clock sc;
+    auto s = sc.now();
     string message = controller.getPrintableMaxFlow(ori, dest);
+    auto time_span = static_cast<chrono::duration<double>>(sc.now() - s);
+    cout << to_string(time_span.count()) << endl;
     tempMenu.singleInputScreen(message);
 }
 
