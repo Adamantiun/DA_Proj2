@@ -1,0 +1,125 @@
+\hypertarget{class_controller}{}\doxysection{Controller Class Reference}
+\label{class_controller}\index{Controller@{Controller}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_controller_a95c56822d667e94b031451729ce069a9}\label{class_controller_a95c56822d667e94b031451729ce069a9}} 
+{\bfseries Controller} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}\label{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}} 
+{\bfseries $\sim$\+Controller} ()
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_a26b0966bfef804149f5f0d14d221106d}\label{class_controller_a26b0966bfef804149f5f0d14d221106d}} 
+int {\bfseries get\+Size\+At\+Index} (int i)
+\begin{DoxyCompactList}\small\item\em Gets the item i of latest\+Index\+Group\+Size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_controller_a9f85920a61f6e8f631b837131f359acf}{get\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Gets the graph of the \mbox{\hyperlink{class_controller}{Controller}} object. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_stop}{Stop}} $>$ \& \mbox{\hyperlink{class_controller_ae71ea93d717a9441bbf35aba8fae6647}{get\+Stops}} ()
+\begin{DoxyCompactList}\small\item\em Gets the stop\+DB of the \mbox{\hyperlink{class_controller}{Controller}} object. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$ \mbox{\hyperlink{class_controller_a55796c1da58a0067ad6e9588513cc86c}{get\+Lines}} ()
+\begin{DoxyCompactList}\small\item\em Gets the line\+DB of the \mbox{\hyperlink{class_controller}{Controller}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_a70ef4127f982c0635d40dadc10f38695}\label{class_controller_a70ef4127f982c0635d40dadc10f38695}} 
+bool {\bfseries read\+Input} (int in\+No)
+\begin{DoxyCompactList}\small\item\em Reads input\textquotesingle{}n\textquotesingle{}\+\_\+b. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_a2d93bde9ac5392dc5347d710903cacca}\label{class_controller_a2d93bde9ac5392dc5347d710903cacca}} 
+string {\bfseries get\+Printable\+Dijk\+Capacity} (int ori, int dest, int group\+Size)
+\begin{DoxyCompactList}\small\item\em Runs dijkstra for capacity and returns a user friendly message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_a1dfd931c1f1a82985893817372ecb631}\label{class_controller_a1dfd931c1f1a82985893817372ecb631}} 
+vector$<$ string $>$ {\bfseries get\+Equi\+Efficient\+Opts} (int ori, int dest, float \&ret\+Max\+Capta\+Per\+Connect)
+\begin{DoxyCompactList}\small\item\em Finds best paths and returns a user friendly message. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_controller_adaa81ac0292ff1a8d9786c8949c21542}{get\+Printable\+Max\+Flow}} (int ori, int dest)
+\begin{DoxyCompactList}\small\item\em Runs ford-\/fulkerson/edmonds-\/karp. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_controller_ad31dc4f076e927c373adcf57753342fa}\label{class_controller_ad31dc4f076e927c373adcf57753342fa}} 
+string {\bfseries recursive\+Printable\+Flow} (int ori, int dest, int n=0)
+\begin{DoxyCompactList}\small\item\em Recursive function that assists in creating user friendly print for flow. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_controller_ac6b575dfcf30057bd5fdd148a9f80866}{get\+Printable\+Lim\+Flow}} (int ori, int dest, int group\+Size)
+\begin{DoxyCompactList}\small\item\em Runs ford-\/fulkerson/edmonds-\/karp with a limit. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_controller_a3b0edde6470f8d8884386e8088897ad5}{get\+Printable\+Lim\+Flow}} (int ori, int dest, int group\+Size, int add\+To\+Group)
+\begin{DoxyCompactList}\small\item\em Adds to the limit of ford-\/fulkerson/edmonds-\/karp. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_controller_a9f85920a61f6e8f631b837131f359acf}\label{class_controller_a9f85920a61f6e8f631b837131f359acf}} 
+\index{Controller@{Controller}!getGraph@{getGraph}}
+\index{getGraph@{getGraph}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getGraph()}{getGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Controller\+::get\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the graph of the \mbox{\hyperlink{class_controller}{Controller}} object. 
+
+\begin{DoxyReturn}{Returns}
+the graph attribute. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_a55796c1da58a0067ad6e9588513cc86c}\label{class_controller_a55796c1da58a0067ad6e9588513cc86c}} 
+\index{Controller@{Controller}!getLines@{getLines}}
+\index{getLines@{getLines}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getLines()}{getLines()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$ Controller\+::get\+Lines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the line\+DB of the \mbox{\hyperlink{class_controller}{Controller}} object. 
+
+\begin{DoxyReturn}{Returns}
+the order\+DB attribute. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_ac6b575dfcf30057bd5fdd148a9f80866}\label{class_controller_ac6b575dfcf30057bd5fdd148a9f80866}} 
+\index{Controller@{Controller}!getPrintableLimFlow@{getPrintableLimFlow}}
+\index{getPrintableLimFlow@{getPrintableLimFlow}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getPrintableLimFlow()}{getPrintableLimFlow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily string Controller\+::get\+Printable\+Lim\+Flow (\begin{DoxyParamCaption}\item[{int}]{ori,  }\item[{int}]{dest,  }\item[{int}]{group\+Size }\end{DoxyParamCaption})}
+
+
+
+Runs ford-\/fulkerson/edmonds-\/karp with a limit. 
+
+\begin{DoxyReturn}{Returns}
+user friendly message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_a3b0edde6470f8d8884386e8088897ad5}\label{class_controller_a3b0edde6470f8d8884386e8088897ad5}} 
+\index{Controller@{Controller}!getPrintableLimFlow@{getPrintableLimFlow}}
+\index{getPrintableLimFlow@{getPrintableLimFlow}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getPrintableLimFlow()}{getPrintableLimFlow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily string Controller\+::get\+Printable\+Lim\+Flow (\begin{DoxyParamCaption}\item[{int}]{ori,  }\item[{int}]{dest,  }\item[{int}]{group\+Size,  }\item[{int}]{add\+To\+Group }\end{DoxyParamCaption})}
+
+
+
+Adds to the limit of ford-\/fulkerson/edmonds-\/karp. 
+
+\begin{DoxyReturn}{Returns}
+user friendly message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_adaa81ac0292ff1a8d9786c8949c21542}\label{class_controller_adaa81ac0292ff1a8d9786c8949c21542}} 
+\index{Controller@{Controller}!getPrintableMaxFlow@{getPrintableMaxFlow}}
+\index{getPrintableMaxFlow@{getPrintableMaxFlow}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getPrintableMaxFlow()}{getPrintableMaxFlow()}}
+{\footnotesize\ttfamily string Controller\+::get\+Printable\+Max\+Flow (\begin{DoxyParamCaption}\item[{int}]{ori,  }\item[{int}]{dest }\end{DoxyParamCaption})}
+
+
+
+Runs ford-\/fulkerson/edmonds-\/karp. 
+
+\begin{DoxyReturn}{Returns}
+user friendly message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_controller_ae71ea93d717a9441bbf35aba8fae6647}\label{class_controller_ae71ea93d717a9441bbf35aba8fae6647}} 
+\index{Controller@{Controller}!getStops@{getStops}}
+\index{getStops@{getStops}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{getStops()}{getStops()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_stop}{Stop}} $>$ \& Controller\+::get\+Stops (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the stop\+DB of the \mbox{\hyperlink{class_controller}{Controller}} object. 
+
+\begin{DoxyReturn}{Returns}
+the stop\+DB attribute. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Controller.\+h\item 
+Controller.\+cpp\end{DoxyCompactItemize}

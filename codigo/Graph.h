@@ -35,7 +35,7 @@ public:
     Graph(int nodes, bool dir = false);
 
     // Gets
-    /** @brief  Get Stop wich is the destination of an edge.*/
+    /** @brief  Get Stop witch is the destination of an edge.*/
     Stop& getDest(Edge edge);
 
     /** @brief  Get path between 2 Stops.*/
@@ -53,8 +53,20 @@ public:
     /** @brief  Get index of a Stop with some code.*/
     int getIndexStop(string code);
 
+    /** @brief  Get edge between stops a and b.*/
     Edge getEdge(Stop a, Stop b);
 
+    /** @brief  Get max capacity of path between a and b.*/
+    int pathMaxCapacity(Stop& a, Stop& b);
+
+    /** @brief  True if graph has stop with index x, False otherwise.*/
+    bool has(int x);
+
+    /** @brief  Get max capacity of path between stops of index a and b.*/
+    int pathMaxCapacity(int a, int b);
+
+    /** @brief  Get time taken by path.*/
+    int getPathTime(vector<int> path);
     //Adds
     /** @brief  Add a Stop.*/
     void addStop(Stop& stop);
@@ -64,32 +76,27 @@ public:
 
     //Algorithms
 
-    /** @brief  Dijkstra algorithm that returns the path the least distance.*/
+    /** @brief  Dijkstra algorithm that returns the path with the least distance.*/
     vector<int> dijkstraCapacity (Stop& a, Stop& b, int groupSize);
 
     /** @brief  Bfs algorithm that returns existance of path.*/
     int bfs(Stop& origin, Stop& dest);
 
-    //Resents
+    /** @brief  ford-fulkerson/edmonds-karp algorithm that returns max flow for graph between ori and dest.*/
+    int fordFulk(Stop &ori, Stop &dest);
+
+    /** @brief  ford-fulkerson/edmonds-karp algorithm with limit, that returns 0 if limit is too low.*/
+    int fordFulkLim(Stop &ori, Stop &dest, int lim);
+
+    //Resets
     /** @brief  Reset every Stop.*/
     void resetNodes();
 
-    int pathMaxCapacity(Stop& a, Stop& b);
-
-
-    bool has(int x);
-
-    int pathMaxCapacity(int a, int b);
-
-    int getPathTime(vector<int> path);
-
-    int fordFulk(Stop &ori, Stop &dest);
-
+    /** @brief  Reset every Edge.*/
     void clearEdges();
 
+    /** @brief  Reset capacities and entrances of every Stop.*/
     void clearStopCaps();
-
-    int fordFulkLim(Stop &ori, Stop &dest, int lim);
 };
 
 #endif

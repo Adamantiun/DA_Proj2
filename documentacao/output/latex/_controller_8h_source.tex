@@ -1,0 +1,55 @@
+\hypertarget{_controller_8h_source}{}\doxysection{Controller.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// ****************************************************************************************************}}
+\DoxyCodeLine{2 \textcolor{comment}{// ******************************************* CONTROLLER\_H\_\_ *****************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{// ****************************************************************************************************}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef PROJ1\_CONTROLLER\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define PROJ1\_CONTROLLER\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}Graph.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}StopEdge.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}Line.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{class_controller}{Controller}}\{}
+\DoxyCodeLine{16 \textcolor{keyword}{private}:}
+\DoxyCodeLine{17     vector<Stop> stopDB;}
+\DoxyCodeLine{18     vector<Line> linesDB;}
+\DoxyCodeLine{19     \mbox{\hyperlink{class_graph}{Graph}} graph;}
+\DoxyCodeLine{20     vector<int> latestIndexGroupSize;}
+\DoxyCodeLine{21     vector<Edge> usedEdges;}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{comment}{// Constructors}}
+\DoxyCodeLine{26 \textcolor{comment}{}    \mbox{\hyperlink{class_controller_a95c56822d667e94b031451729ce069a9}{Controller}}();}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_controller_a0ab87934c4f7a266cfdb86e0f36bc1b5}{\string~Controller}}();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{comment}{// Gets}}
+\DoxyCodeLine{34 \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{class_controller_a26b0966bfef804149f5f0d14d221106d}{getSizeAtIndex}}(\textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{39     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_controller_a9f85920a61f6e8f631b837131f359acf}{getGraph}}();}
+\DoxyCodeLine{44     vector<Stop>\& \mbox{\hyperlink{class_controller_ae71ea93d717a9441bbf35aba8fae6647}{getStops}}();}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{50     vector<Line> \mbox{\hyperlink{class_controller_a55796c1da58a0067ad6e9588513cc86c}{getLines}}();}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{comment}{//Reads}}
+\DoxyCodeLine{56 \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_controller_a70ef4127f982c0635d40dadc10f38695}{readInput}}(\textcolor{keywordtype}{int} inNo);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{// Adds}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{comment}{//Sceneries}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{65     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_controller_a2d93bde9ac5392dc5347d710903cacca}{getPrintableDijkCapacity}}(\textcolor{keywordtype}{int} ori, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} groupSize);}
+\DoxyCodeLine{69     vector<string> \mbox{\hyperlink{class_controller_a1dfd931c1f1a82985893817372ecb631}{getEquiEfficientOpts}}(\textcolor{keywordtype}{int} ori, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{float}\& retMaxCaptaPerConnect);}
+\DoxyCodeLine{74     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_controller_adaa81ac0292ff1a8d9786c8949c21542}{getPrintableMaxFlow}}(\textcolor{keywordtype}{int} ori, \textcolor{keywordtype}{int} dest);}
+\DoxyCodeLine{78     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_controller_ad31dc4f076e927c373adcf57753342fa}{recursivePrintableFlow}}(\textcolor{keywordtype}{int} ori, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} n=0);}
+\DoxyCodeLine{83     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_controller_ac6b575dfcf30057bd5fdd148a9f80866}{getPrintableLimFlow}}(\textcolor{keywordtype}{int} ori, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} groupSize);}
+\DoxyCodeLine{88     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_controller_ac6b575dfcf30057bd5fdd148a9f80866}{getPrintableLimFlow}}(\textcolor{keywordtype}{int} ori, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} groupSize, \textcolor{keywordtype}{int} addToGroup);}
+\DoxyCodeLine{89 \};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJ1\_CONTROLLER\_H}}
+
+\end{DoxyCode}

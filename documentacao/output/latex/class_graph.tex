@@ -1,0 +1,96 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}\label{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}} 
+{\bfseries Graph} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph_a18b4f6dec368300991b68dd75e39a5e9}{Graph}} (int nodes, bool dir=false)
+\begin{DoxyCompactList}\small\item\em Received the necessary attributes to create a \mbox{\hyperlink{class_graph}{Graph}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a29d2f4ae58d07a59b3888054e2521c6a}\label{class_graph_a29d2f4ae58d07a59b3888054e2521c6a}} 
+\mbox{\hyperlink{class_stop}{Stop}} \& {\bfseries get\+Dest} (\mbox{\hyperlink{class_edge}{Edge}} edge)
+\begin{DoxyCompactList}\small\item\em Get \mbox{\hyperlink{class_stop}{Stop}} witch is the destination of an edge. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a6401a286657d9025db376382ce713951}\label{class_graph_a6401a286657d9025db376382ce713951}} 
+vector$<$ int $>$ {\bfseries get\+Path} (\mbox{\hyperlink{class_stop}{Stop}} \&a, \mbox{\hyperlink{class_stop}{Stop}} \&b)
+\begin{DoxyCompactList}\small\item\em Get path between 2 Stops. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a795bfc63f93665b87a5aa3d6f3db8337}\label{class_graph_a795bfc63f93665b87a5aa3d6f3db8337}} 
+\mbox{\hyperlink{class_stop}{Stop}} \& {\bfseries get\+Stop} (int index)
+\begin{DoxyCompactList}\small\item\em Get \mbox{\hyperlink{class_stop}{Stop}} with some index. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a63008d776f67a65d73f2e3a12fecdb4a}\label{class_graph_a63008d776f67a65d73f2e3a12fecdb4a}} 
+\mbox{\hyperlink{class_stop}{Stop}} \& {\bfseries get\+Stop} (string code)
+\begin{DoxyCompactList}\small\item\em Get \mbox{\hyperlink{class_stop}{Stop}} with some code. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a3d36e56a361f5a23ab16c58d50d073b6}\label{class_graph_a3d36e56a361f5a23ab16c58d50d073b6}} 
+vector$<$ \mbox{\hyperlink{class_stop}{Stop}} $>$ \& {\bfseries get\+Stops} ()
+\begin{DoxyCompactList}\small\item\em Get all the Stops. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_aace8e8b4014baa65568cdff2505d70bc}\label{class_graph_aace8e8b4014baa65568cdff2505d70bc}} 
+int {\bfseries get\+Index\+Stop} (string code)
+\begin{DoxyCompactList}\small\item\em Get index of a \mbox{\hyperlink{class_stop}{Stop}} with some code. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_ae4603d75f70684faeb4dbab3c75e62dd}\label{class_graph_ae4603d75f70684faeb4dbab3c75e62dd}} 
+\mbox{\hyperlink{class_edge}{Edge}} {\bfseries get\+Edge} (\mbox{\hyperlink{class_stop}{Stop}} a, \mbox{\hyperlink{class_stop}{Stop}} b)
+\begin{DoxyCompactList}\small\item\em Get edge between stops a and b. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_aaf0e76c2792bec901201074a52f46fab}\label{class_graph_aaf0e76c2792bec901201074a52f46fab}} 
+int {\bfseries path\+Max\+Capacity} (\mbox{\hyperlink{class_stop}{Stop}} \&a, \mbox{\hyperlink{class_stop}{Stop}} \&b)
+\begin{DoxyCompactList}\small\item\em Get max capacity of path between a and b. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a030b5c9f677019f7d58e642533eeb9d9}\label{class_graph_a030b5c9f677019f7d58e642533eeb9d9}} 
+bool {\bfseries has} (int x)
+\begin{DoxyCompactList}\small\item\em True if graph has stop with index x, False otherwise. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a564c269b6c595d4c24f10438c755076c}\label{class_graph_a564c269b6c595d4c24f10438c755076c}} 
+int {\bfseries path\+Max\+Capacity} (int a, int b)
+\begin{DoxyCompactList}\small\item\em Get max capacity of path between stops of index a and b. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a5c97d76d1dec9bafc3ee2c96ef774ae7}\label{class_graph_a5c97d76d1dec9bafc3ee2c96ef774ae7}} 
+int {\bfseries get\+Path\+Time} (vector$<$ int $>$ path)
+\begin{DoxyCompactList}\small\item\em Get time taken by path. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_ae09754e00d961c0d706bcc1a78339e15}\label{class_graph_ae09754e00d961c0d706bcc1a78339e15}} 
+void {\bfseries add\+Stop} (\mbox{\hyperlink{class_stop}{Stop}} \&stop)
+\begin{DoxyCompactList}\small\item\em Add a \mbox{\hyperlink{class_stop}{Stop}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_acf8b0cca825dfad43d1703e017a7706a}\label{class_graph_acf8b0cca825dfad43d1703e017a7706a}} 
+void {\bfseries add\+Edge} (int origin, int dest, int capacity, int duration)
+\begin{DoxyCompactList}\small\item\em Add an \mbox{\hyperlink{class_edge}{Edge}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a3a5a87c48bfd4e44a8aef366b08d60d8}\label{class_graph_a3a5a87c48bfd4e44a8aef366b08d60d8}} 
+vector$<$ int $>$ {\bfseries dijkstra\+Capacity} (\mbox{\hyperlink{class_stop}{Stop}} \&a, \mbox{\hyperlink{class_stop}{Stop}} \&b, int group\+Size)
+\begin{DoxyCompactList}\small\item\em Dijkstra algorithm that returns the path with the least distance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a3a405dca368638912a05d6b1e37428cd}\label{class_graph_a3a405dca368638912a05d6b1e37428cd}} 
+int {\bfseries bfs} (\mbox{\hyperlink{class_stop}{Stop}} \&origin, \mbox{\hyperlink{class_stop}{Stop}} \&dest)
+\begin{DoxyCompactList}\small\item\em Bfs algorithm that returns existance of path. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a4f260ad122440a60f95cf8edcb92f025}\label{class_graph_a4f260ad122440a60f95cf8edcb92f025}} 
+int {\bfseries ford\+Fulk} (\mbox{\hyperlink{class_stop}{Stop}} \&ori, \mbox{\hyperlink{class_stop}{Stop}} \&dest)
+\begin{DoxyCompactList}\small\item\em ford-\/fulkerson/edmonds-\/karp algorithm that returns max flow for graph between ori and dest. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_ab1d9154f94242c241d5268bd9b011697}\label{class_graph_ab1d9154f94242c241d5268bd9b011697}} 
+int {\bfseries ford\+Fulk\+Lim} (\mbox{\hyperlink{class_stop}{Stop}} \&ori, \mbox{\hyperlink{class_stop}{Stop}} \&dest, int lim)
+\begin{DoxyCompactList}\small\item\em ford-\/fulkerson/edmonds-\/karp algorithm with limit, that returns 0 if limit is too low. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a332c8ffff73104bfeaf02966c006acf2}\label{class_graph_a332c8ffff73104bfeaf02966c006acf2}} 
+void {\bfseries reset\+Nodes} ()
+\begin{DoxyCompactList}\small\item\em Reset every \mbox{\hyperlink{class_stop}{Stop}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a0e7559212bd2a6935f7d3c3362967f36}\label{class_graph_a0e7559212bd2a6935f7d3c3362967f36}} 
+void {\bfseries clear\+Edges} ()
+\begin{DoxyCompactList}\small\item\em Reset every \mbox{\hyperlink{class_edge}{Edge}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_graph_a15a55a99321c2cf9dbdd147d4eb67d48}\label{class_graph_a15a55a99321c2cf9dbdd147d4eb67d48}} 
+void {\bfseries clear\+Stop\+Caps} ()
+\begin{DoxyCompactList}\small\item\em Reset capacities and entrances of every \mbox{\hyperlink{class_stop}{Stop}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_a18b4f6dec368300991b68dd75e39a5e9}\label{class_graph_a18b4f6dec368300991b68dd75e39a5e9}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{int}]{nodes,  }\item[{bool}]{dir = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Received the necessary attributes to create a \mbox{\hyperlink{class_graph}{Graph}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & \\
+\hline
+{\em dir} & in default is false \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Graph.\+h\item 
+Graph.\+cpp\end{DoxyCompactItemize}

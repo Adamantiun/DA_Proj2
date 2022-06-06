@@ -1,0 +1,161 @@
+\hypertarget{_stop_edge_8h_source}{}\doxysection{Stop\+Edge.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// ****************************************************************************************************}}
+\DoxyCodeLine{2 \textcolor{comment}{// ******************************************* STOPEDGE\_H\_\_ *******************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{// ****************************************************************************************************}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef STOPEDGE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define STOPEDGE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_edge}{Edge}};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_stop}{Stop}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{private}:}
+\DoxyCodeLine{18     \textcolor{keywordtype}{int} index;}
+\DoxyCodeLine{19     \textcolor{keywordtype}{int} capacity;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{string} code;}
+\DoxyCodeLine{21     \textcolor{keywordtype}{string} name;}
+\DoxyCodeLine{22     vector<Edge> adj;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{double} distance;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{bool} visited;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} pred;}
+\DoxyCodeLine{26     \textcolor{keywordtype}{int} predMax;}
+\DoxyCodeLine{27     vector<pair<int,int>> entrances;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30     \textcolor{comment}{// Constructors}}
+\DoxyCodeLine{35 \textcolor{comment}{}    \mbox{\hyperlink{class_stop_ab8870f949c69cda03c4055524ed13c31}{Stop}}();}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \mbox{\hyperlink{class_stop_ab8870f949c69cda03c4055524ed13c31}{Stop}}(\textcolor{keywordtype}{int} index);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{45     \mbox{\hyperlink{class_stop_ab8870f949c69cda03c4055524ed13c31}{Stop}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&code, \textcolor{keyword}{const} \textcolor{keywordtype}{int} index);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{52     \mbox{\hyperlink{class_stop_a4cf01b5de98027f459ccf7cab2abd616}{Stop}}(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{comment}{//Deconstructors}}
+\DoxyCodeLine{56 \textcolor{comment}{}    \mbox{\hyperlink{class_stop_a24e85edfa98a7a0212136679b6fad6d2}{\string~Stop}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{//Gets}}
+\DoxyCodeLine{60 \textcolor{comment}{}    \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\mbox{\hyperlink{class_stop_aaad3d98bbd74f930bd5a925503a779ec}{getCode}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{63     \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\mbox{\hyperlink{class_stop_af8848ab75bc10a5880b52b22904c32e1}{getName}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{66     \mbox{\hyperlink{class_edge}{Edge}}\& \mbox{\hyperlink{class_stop_ae630fd8dc2994a78cb96bb5d7fe8b582}{getEdge}}(\textcolor{keywordtype}{int} index);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 }
+\DoxyCodeLine{70     \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\mbox{\hyperlink{class_stop_abca6a771bc4932deb567abea1a9a368f}{getCapacity}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{73     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_stop_a954ab134cc24d13412dadab8ad21a97d}{getPred}}( ) \textcolor{keyword}{const};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_stop_ad906a15fd095eb2a8aad5310f41d18fb}{getDistance}}()\textcolor{keyword}{const};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{79     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_stop_a0a7b72c6c6003f8bd4744e3a09a467e9}{getVisited}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{82     vector<struct Edge> * \mbox{\hyperlink{class_stop_a50e7583eeabb69c9991afcbb922da46f}{getAdj}}();}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_stop_a466b9101248a0cc31dc1042f2ab15627}{getPredMax}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{88     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_stop_a81e1d0c1dae04594b45446d29cc836d7}{getIndex}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     \textcolor{comment}{//Sets}}
+\DoxyCodeLine{92 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a0c7da6576cffb5fad928bf5eaabf796f}{setIndex}}(\textcolor{keywordtype}{int} index);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{95     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a1d152b4b0ae2545ebc0826297c86ad42}{setCapacity}}(\textcolor{keywordtype}{int} capacity);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{98     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a1b9771b3d1b84149f0bf78ad15370fcd}{setCode}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&code);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{101     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a7f42eb58a25b27a6b02cb3351413ee3a}{setDistance}}(\textcolor{keywordtype}{double} distance);}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{104     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a4ef1007d09e9180c6c3d6c48e7ba29c0}{setVisited}}(\textcolor{keywordtype}{bool} visited);}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{107     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a44030808f8f9fbe1aada7f63cb17ade1}{setPred}}(\textcolor{keywordtype}{int} pred);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{110     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_ab6f8c04c15fec754716c71322eb5f2d8}{setName}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&name);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{113     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a2a8f958471602d8e8d084229f071087a}{setPredMax}}(\textcolor{keywordtype}{int} max);}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{comment}{//Adds}}
+\DoxyCodeLine{117 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a1b24f0b6ab5e53d12dfb029bd3615fa5}{addEdge}}(\mbox{\hyperlink{class_edge}{Edge}}\& edge);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{120     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a1b24f0b6ab5e53d12dfb029bd3615fa5}{addEdge}}(\textcolor{keywordtype}{int} origin, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} capacity, \textcolor{keywordtype}{int} duration);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{comment}{//Seachs}}
+\DoxyCodeLine{124 \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_stop_a001b68108a9d55382e7d88bdcbeb80d8}{isInAdj}}(\mbox{\hyperlink{class_stop}{Stop}} \&stop);}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     \textcolor{comment}{//Operators}}
+\DoxyCodeLine{130 \textcolor{comment}{}    \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_stop_a884586ee52e4231c6437a46e989244f7}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_stop}{Stop}}\& s1, \textcolor{keyword}{const} \mbox{\hyperlink{class_stop}{Stop}}\& s2)\{}
+\DoxyCodeLine{131         \textcolor{keywordflow}{return} (s1.code==s2.code);}
+\DoxyCodeLine{132     \}}
+\DoxyCodeLine{136     \textcolor{keyword}{friend} istream \&\mbox{\hyperlink{class_stop_aaf5f391080fa97eaf07c7ab1f008aba8}{operator>>}}(istream \&is, \mbox{\hyperlink{class_stop}{Stop}} \&stop);}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_stop_a1b24f0b6ab5e53d12dfb029bd3615fa5}{addEdge}}(\textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} capacity, \textcolor{keywordtype}{int} duration);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{keywordtype}{void} addEdgeA(\mbox{\hyperlink{class_edge}{Edge}} edge);}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     vector<pair<int, int>> getEntrances();}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145     \textcolor{keywordtype}{void} setEntrances(vector<pair<int, int>> entrances);}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     \textcolor{keywordtype}{void} addEntrance(pair<int, int> entrance);}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     \textcolor{keywordtype}{int} getLatestEntranceTime();}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151     \textcolor{keywordtype}{int} getEntranceTime(\textcolor{keywordtype}{int} index);}
+\DoxyCodeLine{152 \};}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{156 \textcolor{keyword}{class }\mbox{\hyperlink{class_edge}{Edge}}\{}
+\DoxyCodeLine{157 \textcolor{keyword}{private}:}
+\DoxyCodeLine{158     \textcolor{keywordtype}{int} origin;}
+\DoxyCodeLine{159     \textcolor{keywordtype}{int} dest;}
+\DoxyCodeLine{160     \textcolor{keywordtype}{int} capacity;}
+\DoxyCodeLine{161     \textcolor{keywordtype}{int} saturation;}
+\DoxyCodeLine{162     \textcolor{keywordtype}{int} duration;}
+\DoxyCodeLine{163 \textcolor{keyword}{public}:}
+\DoxyCodeLine{164     \textcolor{comment}{// Constructors}}
+\DoxyCodeLine{171 \textcolor{comment}{}    \mbox{\hyperlink{class_edge}{Edge}}(\textcolor{keywordtype}{int} origin, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} capacity, \textcolor{keywordtype}{int} duration);}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173     \mbox{\hyperlink{class_edge}{Edge}}();}
+\DoxyCodeLine{174     \textcolor{comment}{//Gets}}
+\DoxyCodeLine{176 \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{class_edge_ac433e8cc5723a93bc9e263d1b4441c8d}{getOrigin}}();}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{179     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_edge_a9739e3084717136eba2b911dfbfbb74d}{getDest}}();}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{182     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_edge_aaa4559d8ef63e55e784f8df6cecfc36f}{getCapacity}}();}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{185     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_edge_adece5b87a881deb35e4b2a3ad1d2daef}{getDuration}}();}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{188     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_edge_af7bb529e69de2d25798011e50585826a}{getSaturation}}();}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190     \textcolor{comment}{//Sets}}
+\DoxyCodeLine{192 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_edge_a5f9d21e065b8be68437258895a15220a}{setOrigin}}(\textcolor{keywordtype}{int} origin);}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{195     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_edge_a46ec061af1d80f4100d3e7c3ea7e75b8}{setDest}}(\textcolor{keywordtype}{int} dest);}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{198     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_edge_a8e0f0c2e2720d76b1f1f765e4fba8405}{setCapacity}}(\textcolor{keywordtype}{int} capacity);}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{201     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_edge_a7d4c0dec5e5dab91e7facad4d305b663}{setDuration}}(\textcolor{keywordtype}{int} duration);}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{204     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_edge_afecc81026101afbd98a3f9b85ed345e2}{setSaturation}}(\textcolor{keywordtype}{int} saturation);}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207     \textcolor{comment}{//Operators}}
+\DoxyCodeLine{211 \textcolor{comment}{}    \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_edge_a02f62dc93f3810dedf600e1890d0a01a}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_edge}{Edge}}\& e1, \textcolor{keyword}{const} \mbox{\hyperlink{class_edge}{Edge}}\& e2)\{}
+\DoxyCodeLine{212         \textcolor{keywordflow}{return}(e1.origin==e2.origin \&\& e1.dest==e2.dest \&\& e1.capacity==e2.capacity \&\& e1.duration==e2.duration);}
+\DoxyCodeLine{213     \}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 \};}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//STOPEDGE\_H}}
+
+\end{DoxyCode}

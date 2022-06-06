@@ -1,0 +1,78 @@
+\hypertarget{_graph_8h_source}{}\doxysection{Graph.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// ****************************************************************************************************}}
+\DoxyCodeLine{2 \textcolor{comment}{// *********************************************** GRAPH\_H\_\_ *****************************************}}
+\DoxyCodeLine{3 \textcolor{comment}{// ****************************************************************************************************}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef \_GRAPH\_H\_}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define \_GRAPH\_H\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}StopEdge.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}maxHeap.h"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{19     \textcolor{keywordtype}{int} n;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{bool} hasDir;}
+\DoxyCodeLine{21     vector<Stop> stops;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24     \textcolor{comment}{// Constructors}}
+\DoxyCodeLine{29 \textcolor{comment}{}    \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}();}
+\DoxyCodeLine{35     \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}(\textcolor{keywordtype}{int} nodes, \textcolor{keywordtype}{bool} dir = \textcolor{keyword}{false});}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{// Gets}}
+\DoxyCodeLine{39 \textcolor{comment}{}    \mbox{\hyperlink{class_stop}{Stop}}\& \mbox{\hyperlink{class_graph_a29d2f4ae58d07a59b3888054e2521c6a}{getDest}}(\mbox{\hyperlink{class_edge}{Edge}} edge);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{42     vector<int> \mbox{\hyperlink{class_graph_a6401a286657d9025db376382ce713951}{getPath}}(\mbox{\hyperlink{class_stop}{Stop}}\& a, \mbox{\hyperlink{class_stop}{Stop}}\& b);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{45     \mbox{\hyperlink{class_stop}{Stop}}\& \mbox{\hyperlink{class_graph_a795bfc63f93665b87a5aa3d6f3db8337}{getStop}}(\textcolor{keywordtype}{int} index);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{48     \mbox{\hyperlink{class_stop}{Stop}}\& \mbox{\hyperlink{class_graph_a795bfc63f93665b87a5aa3d6f3db8337}{getStop}}(\textcolor{keywordtype}{string} code);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{51     vector<Stop>\& \mbox{\hyperlink{class_graph_a3d36e56a361f5a23ab16c58d50d073b6}{getStops}}();}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{54     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_aace8e8b4014baa65568cdff2505d70bc}{getIndexStop}}(\textcolor{keywordtype}{string} code);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{57     \mbox{\hyperlink{class_edge}{Edge}} \mbox{\hyperlink{class_graph_ae4603d75f70684faeb4dbab3c75e62dd}{getEdge}}(\mbox{\hyperlink{class_stop}{Stop}} a, \mbox{\hyperlink{class_stop}{Stop}} b);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{60     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_aaf0e76c2792bec901201074a52f46fab}{pathMaxCapacity}}(\mbox{\hyperlink{class_stop}{Stop}}\& a, \mbox{\hyperlink{class_stop}{Stop}}\& b);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a030b5c9f677019f7d58e642533eeb9d9}{has}}(\textcolor{keywordtype}{int} x);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_aaf0e76c2792bec901201074a52f46fab}{pathMaxCapacity}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{69     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a5c97d76d1dec9bafc3ee2c96ef774ae7}{getPathTime}}(vector<int> path);}
+\DoxyCodeLine{70     \textcolor{comment}{//Adds}}
+\DoxyCodeLine{72 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ae09754e00d961c0d706bcc1a78339e15}{addStop}}(\mbox{\hyperlink{class_stop}{Stop}}\& stop);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_acf8b0cca825dfad43d1703e017a7706a}{addEdge}}(\textcolor{keywordtype}{int} origin, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{int} capacity, \textcolor{keywordtype}{int} duration);}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77     \textcolor{comment}{//Algorithms}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{80     vector<int> \mbox{\hyperlink{class_graph_a3a5a87c48bfd4e44a8aef366b08d60d8}{dijkstraCapacity}} (\mbox{\hyperlink{class_stop}{Stop}}\& a, \mbox{\hyperlink{class_stop}{Stop}}\& b, \textcolor{keywordtype}{int} groupSize);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{83     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a3a405dca368638912a05d6b1e37428cd}{bfs}}(\mbox{\hyperlink{class_stop}{Stop}}\& origin, \mbox{\hyperlink{class_stop}{Stop}}\& dest);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{86     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a4f260ad122440a60f95cf8edcb92f025}{fordFulk}}(\mbox{\hyperlink{class_stop}{Stop}} \&ori, \mbox{\hyperlink{class_stop}{Stop}} \&dest);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{89     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_ab1d9154f94242c241d5268bd9b011697}{fordFulkLim}}(\mbox{\hyperlink{class_stop}{Stop}} \&ori, \mbox{\hyperlink{class_stop}{Stop}} \&dest, \textcolor{keywordtype}{int} lim);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{comment}{//Resets}}
+\DoxyCodeLine{93 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a332c8ffff73104bfeaf02966c006acf2}{resetNodes}}();}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{96     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a0e7559212bd2a6935f7d3c3362967f36}{clearEdges}}();}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{99     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a15a55a99321c2cf9dbdd147d4eb67d48}{clearStopCaps}}();}
+\DoxyCodeLine{100 \};}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

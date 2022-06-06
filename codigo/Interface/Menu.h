@@ -32,7 +32,7 @@ public:
     bool checkIntInput(string input, int lowerBound = 0, int upperBound = 1000000 ); //!< verifies if a string is a valid number and between a certain range
     bool is_number(const string &s); //!< verifies is a string can be translated to an integer
     bool is_coord(const string &s);//!< verifies is a string can be translated to an double
-    string intInputMenu(string message, string footer = "", int lowerBound = 0, int upperBound = 1000000, bool ignoreSpaces = false);
+    string intInputMenu(string message, string footer = "", int lowerBound = 0, int upperBound = 1000000, bool ignoreSpaces = false);//!< prints a menu and verifies if input string is a valid number and between a certain range
 };
 #endif //PROJ1_MENU_H
 

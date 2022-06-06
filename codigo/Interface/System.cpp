@@ -91,7 +91,7 @@ void System::nDivCase1(int ori, int dest, int groupSize) {
         tempMenu.singleInputScreen("Sorry, but you can't take that many people!");
         return;
     }
-    string message = controller.getPrintableDikjCapacity(ori, dest, groupSize);
+    string message = controller.getPrintableDijkCapacity(ori, dest, groupSize);
     tempMenu.singleInputScreen(message);
 }
 
@@ -101,7 +101,7 @@ void System::nDivCase2(int ori, int dest) {
     if(tempMenu.printOptionsMenu({"Get path for that group size", "Go back"},
                               "You can take up to " + to_string(groupSize) + " people") == 1)
         return;
-    string message = controller.getPrintableDikjCapacity(ori, dest, groupSize);
+    string message = controller.getPrintableDijkCapacity(ori, dest, groupSize);
     tempMenu.singleInputScreen(message);
 }
 
@@ -113,7 +113,7 @@ void System::nDivCase3(int ori, int dest) {
     int op1 = tempMenu.printOptionsMenu(opts,
                               "Here are the most efficient paths, \nwith " + ftos(n, 2)  + " bus rides per person:");
     int groupSize = controller.getSizeAtIndex(op1);
-    string message = controller.getPrintableDikjCapacity(ori, dest, groupSize);
+    string message = controller.getPrintableDijkCapacity(ori, dest, groupSize);
     tempMenu.singleInputScreen(message);
 }
 

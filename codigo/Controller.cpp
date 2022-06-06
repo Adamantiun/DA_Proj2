@@ -70,7 +70,7 @@ Graph Controller::getGraph() {
     return graph;
 }
 
-string Controller::getPrintableDikjCapacity(int ori, int dest, int groupSize) {
+string Controller::getPrintableDijkCapacity(int ori, int dest, int groupSize) {
     string ret = "Here's your route:\n";
     vector<int> path = graph.dijkstraCapacity(graph.getStop(ori), graph.getStop(dest), groupSize);
     int i = 1;
