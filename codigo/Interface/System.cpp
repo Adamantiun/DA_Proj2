@@ -36,7 +36,7 @@ System::System() {
         while(!controller.getGraph().has(dest)){
             dest = stoi(baseMenu.intInputMenu("Where would you like to go?", "This stop does not exist!"));
         }
-        if(controller.getGraph().pathMaxCapacity(ori, dest) == 0){
+        if(controller.getGraph().bfs(ori, dest) == 0){
             baseMenu.singleInputScreen("Sorry, but there's no path between those stops");
             continue;
         }

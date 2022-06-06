@@ -76,7 +76,7 @@ string Controller::getPrintableDijkCapacity(int ori, int dest, int groupSize) {
     int i = 1;
     while (i < path.size()) {
         ret += "From " + to_string(path[i - 1]) + " to " + to_string(path[i]) + ", taking " +
-               to_string(graph.getEdge(graph.getStop(path[i-1]), graph.getStop(path[i])).getDuration()) + "min\n";
+               to_string(graph.getEdge(graph.getStop(path[i-1]), graph.getStop(path[i])).getDuration()) + "hours\n";
         i++;
     }
     ret.resize(ret.size()-1);
@@ -99,12 +99,12 @@ vector<string> Controller::getEquiEfficientOpts(int ori, int dest, float& retMax
             ret.clear();
             latestIndexGroupSize.push_back(i);
             ret.push_back("Taking " + to_string(i) + " people, you will ride " + to_string(path.size()-1)
-                    +" buses, and take "+ to_string(graph.getPathTime(path)) + "min");
+                    +" buses, and take "+ to_string(graph.getPathTime(path)) + "hours");
             n++;
         }else if(ceil((100.0*i)/((path.size()-1)))/100.0 == maxCaptaPerConnect){
             latestIndexGroupSize.push_back(i);
             ret.push_back("Taking " + to_string(i) + " people, you will ride " + to_string(path.size()-1)
-                          +" buses, and take "+ to_string(graph.getPathTime(path)) + "min");
+                          +" buses, and take "+ to_string(graph.getPathTime(path)) + "hours");
             n++;
         }
     }
@@ -126,11 +126,11 @@ string Controller::recursivePrintableFlow(int ori, int dest, int n){
     for(auto e : *s.getAdj()){
         if(e.getSaturation()!=0 && !(count(usedEdges.begin(), usedEdges.end(), e))){
             ret+= string(n, '.') + to_string(e.getSaturation()) + " people go from " + to_string(ori) + " to "
-                    + to_string(e.getDest()) + " taking " + to_string(e.getDuration()) + "min\n";
+                    + to_string(e.getDest()) + " taking " + to_string(e.getDuration()) + "hours\n";
             if(graph.getStop(e.getDest()).getLatestEntranceTime() > graph.getStop(e.getDest()).getEntranceTime(s.getIndex())){
                 ret.pop_back();
                 int wait = graph.getStop(e.getDest()).getLatestEntranceTime() - graph.getStop(e.getDest()).getEntranceTime(s.getIndex());
-                ret += " and wait there " + to_string(wait) + "min\n";
+                ret += " and wait there " + to_string(wait) + "hours\n";
             }
             ret+= recursivePrintableFlow(e.getDest(), dest, n + 1);
             usedEdges.push_back(e);
@@ -148,7 +148,7 @@ string Controller::getPrintableMaxFlow(int ori, int dest) {
     ret+= "\nAnd the group will be fully together at:";
     for(auto s:graph.getStops())
         if(s.getCapacity() == maxFlow)
-            ret+= "\nStop " + to_string(s.getIndex()) + " at minute " + to_string(s.getLatestEntranceTime());
+            ret+= "\nStop " + to_string(s.getIndex()) + " at hour " + to_string(s.getLatestEntranceTime());
     return ret;
 }
 
@@ -165,7 +165,7 @@ string Controller::getPrintableLimFlow(int ori, int dest, int groupSize) {
     ret+= "\nAnd the group will be fully together at:";
     for(auto s:graph.getStops())
         if(s.getCapacity() == groupSize)
-            ret+= "\nStop " + to_string(s.getIndex()) + " at minute " + to_string(s.getLatestEntranceTime());
+            ret+= "\nStop " + to_string(s.getIndex()) + " at hour " + to_string(s.getLatestEntranceTime());
     return ret;
 }
 
@@ -180,7 +180,7 @@ string Controller::getPrintableLimFlow(int ori, int dest, int groupSize, int add
     ret+= "\nAnd the group will be fully together at:";
     for(auto s:graph.getStops())
         if(s.getCapacity() == groupSize+addToGroup)
-            ret+= "\n -Stop " + to_string(s.getIndex()) + " at minute " + to_string(s.getLatestEntranceTime());
+            ret+= "\n -Stop " + to_string(s.getIndex()) + " at hour " + to_string(s.getLatestEntranceTime());
     return ret;
 }
 

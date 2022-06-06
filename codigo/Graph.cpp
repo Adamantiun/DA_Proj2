@@ -179,6 +179,10 @@ int Graph::bfs(Stop& origin, Stop& dest) {
     return dest.getVisited();
 }
 
+int Graph::bfs(int origin, int dest){
+    return bfs(getStop(origin), getStop(dest));
+}
+
 void Graph::clearEdges(){
     for (auto & stop : stops)
         for (auto & j : *stop.getAdj())

@@ -79,8 +79,11 @@ public:
     /** @brief  Dijkstra algorithm that returns the path with the least distance.*/
     vector<int> dijkstraCapacity (Stop& a, Stop& b, int groupSize);
 
-    /** @brief  Bfs algorithm that returns existance of path.*/
+    /** @brief  Bfs algorithm that returns existence of path.*/
     int bfs(Stop& origin, Stop& dest);
+
+    /** @brief  Bfs algorithm that returns existence of path.*/
+    int bfs(int origin, int dest);
 
     /** @brief  ford-fulkerson/edmonds-karp algorithm that returns max flow for graph between ori and dest.*/
     int fordFulk(Stop &ori, Stop &dest);

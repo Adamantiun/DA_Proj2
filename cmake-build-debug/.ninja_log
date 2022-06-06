@@ -54,3 +54,11 @@
 1841	2813	6761452625773120	DA_Proj2.exe	acee0dc77a1d307b
 4	1738	6761453448955521	CMakeFiles/DA_Proj2.dir/codigo/Controller.cpp.obj	2d712b9d506850fe
 1739	3033	6761453461904265	DA_Proj2.exe	acee0dc77a1d307b
+38	2840	6762386924453943	CMakeFiles/DA_Proj2.dir/codigo/Line.cpp.obj	61aac66bc8b8c7cd
+24	3175	6762386927939201	CMakeFiles/DA_Proj2.dir/codigo/StopEdge.cpp.obj	14f90dc3d6a0caf8
+1	3196	6762386928720478	CMakeFiles/DA_Proj2.dir/codigo/main.cpp.obj	fc34c71e3eed2f14
+29	3578	6762386932674008	CMakeFiles/DA_Proj2.dir/codigo/Interface/Menu.cpp.obj	5f363c21eef92d04
+33	8272	6762386978862631	CMakeFiles/DA_Proj2.dir/codigo/Controller.cpp.obj	2d712b9d506850fe
+20	8618	6762386982042190	CMakeFiles/DA_Proj2.dir/codigo/Interface/System.cpp.obj	4846556bf33dfac1
+2840	9563	6762386992839741	CMakeFiles/DA_Proj2.dir/codigo/Graph.cpp.obj	b6b1f8df1f465383
+9564	10583	6762387003088674	DA_Proj2.exe	acee0dc77a1d307b
